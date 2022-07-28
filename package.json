@@ -1,6 +1,6 @@
 {
   "name": "@slydragonn/react-easy-comments",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A react component library for create comments section",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@slydragonn"
