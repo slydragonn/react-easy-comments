@@ -2,6 +2,9 @@
   "name": "@slydragonn/react-easy-comments",
   "version": "0.0.1",
   "description": "A react component library for create comments section",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@slydragonn"
+  },
   "scripts": {
     "rollup": "rollup -c"
   },

@@ -1,1 +1,2 @@
-export { default } from "./comments-section";
+export { default } from "./CommentsSection";
+
