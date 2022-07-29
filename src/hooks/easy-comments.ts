@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 import { v4 as uuid } from 'uuid'
 export interface CurrentUser {
   id: string
@@ -10,7 +10,7 @@ export interface CurrentUser {
 export type InitialComments = Array<any>
 
 export interface Listeners {
-  onSubmit: (comment: Comment) => void
+  onSubmit: (comment: CommentSubmit) => void
   onUpdate: (comment: Comment) => void
 }
 
@@ -25,27 +25,40 @@ export interface Comment {
   userId: string
   username: string
   comment: string
-  creationDate?: string | Date
+  creationDate?: string
   likes?: number
   dislikes?: number
   avatarUrl?: string
   profileLink?: string
 }
 
+export interface CommentSubmit {
+  userId: string
+  username: string
+  comment: string
+  avatarUrl?: string
+  profileLink?: string
+}
+
 interface EasyComments {
   comments: Array<Comment>
-  handleSubmit: (comment:Comment) => void
+  handleSubmit: (comment:string) => void
   handleUpdate: (comment: Comment) => void
 }
 
 const useEasyComments = ({initialComments, currentUser, listeners}: Params): EasyComments => {
+  const [comments, setComments] = useState(initialComments[0].map(initialComments[1]))
+  
   const { id } = currentUser
   const { onSubmit, onUpdate } = listeners
 
-  const [comments, setComments] = useState(initialComments[0].map(initialComments[1]))
-
-  const handleSubmit = async (comment:Comment) => {
+  const handleSubmit = async (commentValue:string) => {
     try {
+      const comment = {
+        userId: id,
+        username: currentUser.name,
+        comment: commentValue
+      }
       await onSubmit(comment)
       const newComment = {
         ...comment,
@@ -71,7 +84,7 @@ const useEasyComments = ({initialComments, currentUser, listeners}: Params): Eas
         return setComments(() => [...deleteUpdatedComment, updatedComment])
       }
       
-      const likedComment = comments.filter((com:Comment) => com.commentId === comment.commentId)
+      const likedComment = comments.find((com:Comment) => com.commentId === comment.commentId)
       const updatedComment = {
         ...likedComment,
         likes: comment.likes,
