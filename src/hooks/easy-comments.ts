@@ -42,17 +42,23 @@ export interface CommentSubmit {
 
 interface EasyComments {
   comments: Array<Comment>
-  handleSubmit: (comment:string) => void
+  handleSubmit: (comment: string) => void
   handleUpdate: (comment: Comment) => void
 }
 
-const useEasyComments = ({initialComments, currentUser, listeners}: Params): EasyComments => {
-  const [comments, setComments] = useState(initialComments[0].map(initialComments[1]))
-  
+const useEasyComments = ({
+  initialComments,
+  currentUser,
+  listeners
+}: Params): EasyComments => {
+  const [comments, setComments] = useState(
+    initialComments[0].map(initialComments[1])
+  )
+
   const { id } = currentUser
   const { onSubmit, onUpdate } = listeners
 
-  const handleSubmit = async (commentValue:string) => {
+  const handleSubmit = async (commentValue: string) => {
     try {
       const comment = {
         userId: id,
@@ -66,7 +72,6 @@ const useEasyComments = ({initialComments, currentUser, listeners}: Params): Eas
       }
       const addComment = [...comments, newComment]
       setComments(() => addComment)
-      
     } catch (error) {
       console.log(error)
     }
@@ -74,28 +79,33 @@ const useEasyComments = ({initialComments, currentUser, listeners}: Params): Eas
 
   const handleUpdate = async (comment: Comment) => {
     try {
-      if(comment.userId === id){
+      if (comment.userId === id) {
         await onUpdate(comment)
 
-        const deleteUpdatedComment = comments.filter((com:Comment) => com.commentId !== comment.commentId)
+        const deleteUpdatedComment = comments.filter(
+          (com: Comment) => com.commentId !== comment.commentId
+        )
         const updatedComment = {
           ...comment
         }
         return setComments(() => [...deleteUpdatedComment, updatedComment])
       }
-      
-      const likedComment = comments.find((com:Comment) => com.commentId === comment.commentId)
+
+      const likedComment = comments.find(
+        (com: Comment) => com.commentId === comment.commentId
+      )
       const updatedComment = {
         ...likedComment,
         likes: comment.likes,
         dislikes: comment.dislikes
       }
-      
+
       await onUpdate(updatedComment)
 
-      const deleteUpdatedComment = comments.filter((com:Comment) => com.commentId !== comment.commentId)
+      const deleteUpdatedComment = comments.filter(
+        (com: Comment) => com.commentId !== comment.commentId
+      )
       return setComments(() => [...deleteUpdatedComment, updatedComment])
-
     } catch (error) {
       console.log(error)
     }
@@ -106,7 +116,6 @@ const useEasyComments = ({initialComments, currentUser, listeners}: Params): Eas
     handleSubmit,
     handleUpdate
   }
-  
 }
 
 export default useEasyComments

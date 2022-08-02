@@ -1,2 +1,1 @@
-export { default } from "./CommentsSection";
-
+export { default } from './CommentsSection'
