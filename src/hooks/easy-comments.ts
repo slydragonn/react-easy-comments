@@ -1,49 +1,10 @@
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid'
-export interface CurrentUser {
-  id: string
-  name: string
-  avartarUrl?: string
-  linkProfile?: string
-}
-
-export type InitialComments = Array<any>
-
-export interface Listeners {
-  onSubmit: (comment: CommentSubmit) => void
-  onUpdate: (comment: Comment) => void
-}
-
+import { Comment, CurrentUser, EasyComments, InitialComments, Listeners } from '../types'
 export interface Params {
   currentUser: CurrentUser
   initialComments: InitialComments
   listeners: Listeners
-}
-
-export interface Comment {
-  commentId: string
-  userId: string
-  username: string
-  comment: string
-  creationDate?: string
-  likes?: number
-  dislikes?: number
-  avatarUrl?: string
-  profileLink?: string
-}
-
-export interface CommentSubmit {
-  userId: string
-  username: string
-  comment: string
-  avatarUrl?: string
-  profileLink?: string
-}
-
-interface EasyComments {
-  comments: Array<Comment>
-  handleSubmit: (comment: string) => void
-  handleUpdate: (comment: Comment) => void
 }
 
 const useEasyComments = ({
