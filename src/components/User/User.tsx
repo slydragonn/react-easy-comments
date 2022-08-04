@@ -1,5 +1,6 @@
 import React from 'react'
 import { useToggleTheme } from '../../hooks'
+import getTimeAgo from '../../utils'
 import Avatar from './Avatar'
 
 export interface Props {
@@ -27,7 +28,7 @@ const User = ({context, name, image, profileLink, creationDate, theme}: Props) =
       <Avatar name={name} image={image} profileLink={profileLink}/>
       <div className={themeUserInfo}>
         <p>{name}</p>
-        {creationDate && <span>{creationDate}</span>}
+        {creationDate && <span>{getTimeAgo(creationDate)}</span>}
       </div>
     </section>
   )
