@@ -11,7 +11,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts,.tsx .",
-    "format": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ts|tsx|json)\""
+    "format": "prettier --ignore-path .prettierignore --write \"**/*.+(js|ts|tsx|json)\"",
+    "format:css": "prettier --ignore-path .prettierignore --write \"**/*.+(css|sass|scss)\""
   },
   "keywords": [],
   "author": "Alejandro Londoño",
@@ -69,7 +70,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "classnames": "^2.3.1",
     "dateformat": "^5.0.3",
+    "dompurify": "^2.3.10",
+    "react-icons": "^4.4.0",
     "uuid": "^8.3.2"
   }
 }

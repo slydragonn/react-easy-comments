@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react"
-import React from "react"
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React from 'react'
 import User from './User'
 
 export default {
@@ -7,12 +7,13 @@ export default {
   component: User
 } as ComponentMeta<typeof User>
 
-const Template: ComponentStory<typeof User> = (args) => <User {...args}/>
+const Template: ComponentStory<typeof User> = args => <User {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
   name: 'Alejandra Espada',
-  image: 'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
+  image:
+    'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
   creationDate: '09-23-2020',
   theme: 'light'
 }
@@ -34,14 +35,8 @@ NoImageDark.args = {
 export const Dark = Template.bind({})
 Dark.args = {
   name: 'Alejandra Espada',
-  image: 'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
+  image:
+    'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
   creationDate: '12-04-2002',
   theme: 'dark'
-}
-
-export const FormContext = Template.bind({})
-FormContext.args = {
-  context: 'form',
-  name: 'Alejandra Espada',
-  image: 'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
 }

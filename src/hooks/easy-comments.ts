@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { Comment, CurrentUser, EasyComments, InitialComments, Listeners } from '../types'
+import {
+  Comment,
+  CurrentUser,
+  EasyComments,
+  InitialComments,
+  Listeners
+} from '../types'
 export interface Params {
   currentUser: CurrentUser
   initialComments: InitialComments

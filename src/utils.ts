@@ -1,39 +1,56 @@
 import dateFormat from 'dateformat'
 
-function getTimeAgo(date:string | Date | number) {
-    const ago = dateFormat(date, 'M-H-d-m-yyyy').split('-')
-    const now = dateFormat(new Date(), 'M-H-d-m-yyyy').split('-')
+export function getTimeAgo(date: string | Date | number) {
+  const ago = dateFormat(date, 'M-H-d-m-yyyy').split('-')
+  const now = dateFormat(new Date(), 'M-H-d-m-yyyy').split('-')
 
-    const subDate = now.map((el, i) => {
-        return Number(el) - Number(ago[i])
-    })
+  const subDate = now.map((el, i) => {
+    return Number(el) - Number(ago[i])
+  })
 
-    if (Number(subDate[4]) !== 0) {
-        const year = subDate[4] > 1 ? 'years' : 'year'
-        return `${subDate[4]} ${year} ago`
-    }
+  const { year, month, day, hour, minute } = {
+    year: Number(subDate[4]),
+    month: Number(subDate[3]),
+    day: Number(subDate[2]),
+    hour: Number(subDate[1]),
+    minute: Number(subDate[0])
+  }
 
-    if (Number(subDate[3]) !== 0) {
-        const month = subDate[3] > 1 ? 'months' : 'month'
-        return `${subDate[3]} ${month} ago`
-    }
+  if (year !== 0) {
+    const yearStr = year > 1 ? 'years' : 'year'
+    return `${year} ${yearStr} ago`
+  }
 
-    if (Number(subDate[2]) !== 0) {
-        const day = Number(subDate[2]) > 1 ? 'days' : 'day'
-        return `${subDate[2]} ${day} ago`
-    }
+  if (month !== 0) {
+    const monthStr = month > 1 ? 'months' : 'month'
+    return `${month} ${monthStr} ago`
+  }
 
-    if (Number(subDate[1]) !== 0) {
-        const hour = Number(subDate[1]) > 1 ? 'hours' : 'hour'
-        return `${subDate[1]} ${hour} ago`
-    }
+  if (day !== 0) {
+    const dayStr = day > 1 ? 'days' : 'day'
+    return `${day} ${dayStr} ago`
+  }
 
-    if (Number(subDate[0]) !== 0) {
-        const min = Number(subDate[0]) > 1 ? 'minutes' : 'minute'
-        return `${subDate[0]} ${min} ago`
-    }
+  if (hour !== 0) {
+    const hourStr = hour > 1 ? 'hours' : 'hour'
+    return `${hour} ${hourStr} ago`
+  }
 
-    return 'Just now'
+  if (minute !== 0) {
+    const minuteStr = minute > 1 ? 'minutes' : 'minute'
+    return `${minute} ${minuteStr} ago`
+  }
+
+  return 'Just now'
 }
 
-export default getTimeAgo
+export const subNumber = (number: number): string => {
+    const oneThousand = 1000
+    const oneMillion = 1000000
+
+  return number >= oneThousand && number < oneMillion
+    ? `${(number / oneThousand).toFixed(2)} K`
+    : number >= oneMillion
+    ? `${(number / oneMillion).toFixed(2)} M`
+    : `${number}`
+}

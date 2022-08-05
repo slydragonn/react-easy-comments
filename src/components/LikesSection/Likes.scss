@@ -1,0 +1,47 @@
+$enable-like-button: #6AC1FF;
+$gray-text-button: #474747;
+$enable-dislike-button: #F44336;
+
+@mixin button-template($color, $size) {
+  width: $size;
+  height: $size;
+  color: $color;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.likesSection {
+  display: flex;
+  justify-content: space-around;
+  max-width: 200px;
+  height: 20px;
+}
+
+.likesSection__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.likesSection__counter {
+  max-width: 70px;
+  font-size: 14px;
+  color: $gray-text-button;
+  margin-left: 5px;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+}
+
+.button__disable {
+  @include button-template($gray-text-button, 18px);
+}
+
+.button__like--enable {
+  @include button-template($enable-like-button, 18px);
+}
+
+.button__dislike--enable {
+  @include button-template($enable-dislike-button, 18px)
+}
