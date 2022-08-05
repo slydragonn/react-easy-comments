@@ -7,8 +7,10 @@ It's a light library with that you can do, comments sections easily.
 ## Check List
 
 * [ ] Theme Layout
-* [ ] Comment Form
-* [ ] Likes Section
+* [ ] Dark Theme
+* [x] Comment Form
+* [ ] More colors for Avatars
+* [x] Likes Section
 * [ ] Main Layout
 * [ ] Comment
 * [ ] Filter and total comments

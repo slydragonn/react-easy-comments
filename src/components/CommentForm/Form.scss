@@ -1,0 +1,68 @@
+$blue-100: #6AC1FF;
+$blue-200: #3eacfa;
+$white-100:#EFEFEF;
+$gray-200:#767676;
+$gray-300: #474747;
+
+.form {
+  display: flex;
+  width: 90%;
+  height: 40px;
+  background-color: transparent;
+}
+
+.form__input {
+  width: 80%;
+  height: 100%;
+  padding: 5px 5px 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  border-bottom-color: $gray-200;
+  margin-right: 20px;
+  background-color: transparent;
+  font-size: 17px;
+  color: $gray-300;
+  transition: border-bottom-color .3s;
+  
+  &:hover {
+    border-bottom-color: $white-100;
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom-color: $blue-200;
+  }
+}
+
+.form__input--dark {
+  border-bottom-color: $white-100;
+  color: $white-100;
+
+  &:hover {
+    border-bottom-color: $gray-200;
+  }
+}
+
+.form__button {
+  border: none;
+  background-color: transparent;
+}
+
+.form__send {
+  width: 30px;
+  height: 30px;
+  color: $blue-100;
+  transition: color .3s;
+  &:hover {
+    color: $blue-200;
+    cursor: pointer;
+  }
+}
+
+.form__send--dark {
+  color: $blue-200;
+  &:hover {
+    color: $blue-100;
+    cursor: pointer;
+  }
+}
