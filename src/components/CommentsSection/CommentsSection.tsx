@@ -3,22 +3,24 @@ import useEasyComments, { Params } from '../../hooks'
 import Comment from '../Comment'
 
 interface Props extends Params {
-  options: object
+  options?: object
 }
-/*
-  commentId: string
-  userId: string
-  username: string
-  comment: string
-  creationDate?: string | Date
-  likes?: number
-  dislikes?: number
-  avatarUrl?: string
-  profileLink?: string
-*/
 
+const defaultOptions = {
+  placeholder: 'Add a comment...',
+  theme: 'default',
+  editable: true,
+  erasable: false,
+  likes: [true, true],
+  maxLength: 500,
+  profileImage: true,
+  totalComments: true,
+  filter: [true, 'date'],
+  emojis: false
+}
 
 const CommentsSection = (props: Props) => {
+  const { options = defaultOptions } = props
   const { comments, handleSubmit, handleUpdate } = useEasyComments({
     currentUser: props.currentUser,
     initialComments: props.initialComments,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 interface Params {
   theme: 'dark' | 'light'
@@ -6,14 +6,14 @@ interface Params {
   variant: string
 }
 
-const useToggleTheme = ({theme, defaultValue, variant}: Params) => {
+const useToggleTheme = ({ theme, defaultValue, variant }: Params) => {
   const [value, setValue] = useState(defaultValue)
 
   useEffect(() => {
-    if(theme == 'dark') {
+    if (theme == 'dark') {
       setValue(() => variant)
     }
-    if(theme == 'light') {
+    if (theme == 'light') {
       setValue(() => defaultValue)
     }
   }, [theme])
