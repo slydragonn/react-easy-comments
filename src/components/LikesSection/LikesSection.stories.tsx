@@ -13,13 +13,13 @@ const Template: ComponentStory<typeof LikesSection> = args => (
 
 export const Primary = Template.bind({})
 Primary.args = {
-  likes: {
-    total: 1150,
-    users: ['1234', '3245', '0001']
+  commentId: "123",
+  currentUser: {
+    id: "001",
+    likes: ["123", "222"],
+    dislikes: []
   },
-  dislikes: {
-    total: 12325456,
-    users: []
-  },
-  currentUserId: '0001'
+  likes: 2,
+  dislikes: 0,
+  updateCommentLikes: (commentLikes) => console.log(commentLikes)
 }

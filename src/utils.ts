@@ -45,8 +45,8 @@ export function getTimeAgo(date: string | Date | number) {
 }
 
 export const subNumber = (number: number): string => {
-    const oneThousand = 1000
-    const oneMillion = 1000000
+  const oneThousand = 1000
+  const oneMillion = 1000000
 
   return number >= oneThousand && number < oneMillion
     ? `${(number / oneThousand).toFixed(2)} K`

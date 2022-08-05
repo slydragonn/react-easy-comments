@@ -14,13 +14,6 @@ export interface CommentSubmit {
   profileLink?: string
 }
 
-export interface CurrentUser {
-  id: string
-  name: string
-  avartarUrl?: string
-  linkProfile?: string
-}
-
 export interface Listeners {
   onSubmit: (comment: CommentSubmit) => void
   onUpdate: (comment: Comment) => void
