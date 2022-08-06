@@ -1,5 +1,6 @@
 import addClass from 'classnames'
 import React from 'react'
+import { Theme } from '../../types'
 import { getTimeAgo } from '../../utils'
 import Avatar from './Avatar'
 import './User.scss'
@@ -9,7 +10,7 @@ export interface Props {
   image?: string
   profileLink?: string
   creationDate?: string
-  theme?: 'dark' | 'default'
+  theme?: Theme
 }
 
 const User = ({ name, image, profileLink, creationDate, theme = 'default' }: Props) => {
