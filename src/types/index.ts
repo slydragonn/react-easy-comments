@@ -4,5 +4,7 @@ export {
   EasyComments,
   Listeners
 } from './easy-comments'
-export { Params } from './likes'
+export { LikeParams } from './likes'
+export { Theme } from './theme'
 export { CurrentUser } from './user'
+

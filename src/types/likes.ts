@@ -5,7 +5,7 @@ interface CurrentUser {
   dislikes: string[]
 }
 
-export interface Params {
+export interface LikeParams {
   commentId: string
   likes: number
   dislikes: number
