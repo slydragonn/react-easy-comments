@@ -5,12 +5,17 @@ import {
   AiFillLike as LikeIcon
 } from 'react-icons/ai'
 import { useLikes } from '../../hooks'
-import { Params as Props } from '../../types'
+import { LikeParams, Theme } from '../../types'
 import { subNumber } from '../../utils'
 import './Likes.scss'
 
 
+export interface Props extends LikeParams {
+  theme: Theme
+}
+
 const LikesSection = ({
+  theme = 'default',
   commentId,
   currentUser,
   likes,
@@ -31,23 +36,29 @@ const LikesSection = ({
         <button onClick={() => handleLikes('like')} className="button">
           <LikeIcon
             className={addClass({
-              button__disable: !liked,
+              button__disable: theme === 'default' && !liked,
+              'button__disable--dark': theme === 'dark' && !liked,
               'button__like--enable': liked
             })}
           />
         </button>
-        <span className="likesSection__counter">{subNumber(totalLikes)}</span>
+        <span className={addClass("likesSection__counter",{
+          "likesSection__counter--dark": theme == 'dark'
+        })}>{subNumber(totalLikes)}</span>
       </div>
       <div className="likesSection__container">
         <button onClick={() => handleLikes('dislike')} className="button">
           <DislikeIcon
             className={addClass({
-              button__disable: !disliked,
+              button__disable: theme === 'default' && !disliked,
+              'button__disable--dark': theme === 'dark' && !disliked,
               'button__dislike--enable': disliked
             })}
           />
         </button>
-        <span className="likesSection__counter">
+        <span className={addClass("likesSection__counter",{
+          "likesSection__counter--dark": theme == 'dark'
+        })}>
           {subNumber(totalDislikes)}
         </span>
       </div>

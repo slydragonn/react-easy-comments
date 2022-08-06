@@ -1,6 +1,8 @@
-$enable-like-button: #6AC1FF;
-$gray-text-button: #474747;
-$enable-dislike-button: #F44336;
+$blue-100: #6AC1FF;
+$gray-100: #474747;
+$red-100: #F44336;
+$white-100: #EFEFEF;
+$white-200: #B8B8B8;
 
 @mixin button-template($color, $size) {
   width: $size;
@@ -25,8 +27,11 @@ $enable-dislike-button: #F44336;
 .likesSection__counter {
   max-width: 70px;
   font-size: 14px;
-  color: $gray-text-button;
+  color: $gray-100;
   margin-left: 5px;
+}
+.likesSection__counter--dark {
+  color: $white-100;
 }
 
 .button {
@@ -35,13 +40,17 @@ $enable-dislike-button: #F44336;
 }
 
 .button__disable {
-  @include button-template($gray-text-button, 18px);
+  @include button-template($gray-100, 18px);
+}
+
+.button__disable--dark {
+  @include button-template($white-200, 18px);
 }
 
 .button__like--enable {
-  @include button-template($enable-like-button, 18px);
+  @include button-template($blue-100, 18px);
 }
 
 .button__dislike--enable {
-  @include button-template($enable-dislike-button, 18px)
+  @include button-template($red-100, 18px)
 }
