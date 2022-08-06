@@ -1,0 +1,45 @@
+$white: #FFFFFF;
+$gray-100: #B8B8B8;
+$gray-200: #767676;
+$gray-300: #2F2F2F;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 7px;
+}
+.user__info > .user__name {
+  font-weight: 400;
+  font-size: 17px;
+  color: $gray-300;
+}
+.user__info > .user__date {
+  font-weight: 100;
+  font-size: 14px;
+  color: $gray-200;
+}
+
+.user__info--dark > .user__name {
+  font-weight: 400;
+  font-size: 17px;
+  color: $white;
+}
+
+.user__info--dark > .user__date {
+  font-weight: 100;
+  font-size: 14px;
+  color: $gray-100;
+}

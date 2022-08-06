@@ -15,28 +15,28 @@ Primary.args = {
   image:
     'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
   creationDate: '09-23-2020',
-  theme: 'light'
+  theme: 'default'
 }
 
-export const NoImage = Template.bind({})
-NoImage.args = {
-  name: 'alejandra Espada',
-  creationDate: '08-31-2021',
-  theme: 'light'
-}
-
-export const NoImageDark = Template.bind({})
-NoImageDark.args = {
-  name: 'Alejandra Espada',
-  creationDate: '7-12-2022',
-  theme: 'dark'
-}
-
-export const Dark = Template.bind({})
-Dark.args = {
+export const Secundary = Template.bind({})
+Secundary.args = {
   name: 'Alejandra Espada',
   image:
     'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
   creationDate: '12-04-2002',
+  theme: 'dark'
+}
+
+export const NoImagePrimary = Template.bind({})
+NoImagePrimary.args = {
+  name: 'alejandra Espada',
+  creationDate: '08-31-2021',
+  theme: 'default'
+}
+
+export const NoImageSecundary = Template.bind({})
+NoImageSecundary.args = {
+  name: 'Alejandra Espada',
+  creationDate: '7-12-2022',
   theme: 'dark'
 }

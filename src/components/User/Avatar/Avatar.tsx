@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles.scss'
+import './Avatar.scss'
 
 export interface Props {
   name: string
@@ -9,12 +9,12 @@ export interface Props {
 
 const Avatar = ({ name, image, profileLink }: Props) => {
   return (
-    <section className="user__avatar">
-      <a href={profileLink ?? '#'} target="_blank" rel="noreferrer">
+    <section className="avatar">
+      <a href={profileLink ?? '#'} target="_blank" rel="noreferrer" className='avatar__link'>
         {image ? (
-          <img src={image} alt={`${name} profile image`} />
+          <img className='avatar__icon' src={image} alt={`${name} profile image`} />
         ) : (
-          <div>{name[0].toLocaleUpperCase()}</div>
+          <p className='avatar__char'>{name[0].toLocaleUpperCase()}</p>
         )}
       </a>
     </section>
