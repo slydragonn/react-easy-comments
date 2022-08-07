@@ -1,6 +1,6 @@
 import dateFormat from 'dateformat'
 
-export function getTimeAgo(date: string | Date | number) {
+const getTimeAgo = (date: string | Date | number) => {
   const ago = dateFormat(date, 'M-H-d-m-yyyy').split('-')
   const now = dateFormat(new Date(), 'M-H-d-m-yyyy').split('-')
 
@@ -44,13 +44,4 @@ export function getTimeAgo(date: string | Date | number) {
   return 'Just now'
 }
 
-export const subNumber = (number: number): string => {
-  const oneThousand = 1000
-  const oneMillion = 1000000
-
-  return number >= oneThousand && number < oneMillion
-    ? `${(number / oneThousand).toFixed(2)} K`
-    : number >= oneMillion
-    ? `${(number / oneMillion).toFixed(2)} M`
-    : `${number}`
-}
+export default getTimeAgo
