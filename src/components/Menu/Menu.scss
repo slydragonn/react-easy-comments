@@ -1,0 +1,95 @@
+$gray-100: #dedede;
+$gray-200: #474747;
+$gray-300: #383838;
+$white-100: #efefef;
+$white-200: #b8b8b8;
+
+@mixin animation($duration) {
+  $name: animation-#{unique-id()};
+
+  @keyframes #{$name} {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+}
+
+.menu {
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.menu__button {
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.menu__icon {
+  width: 25px;
+  height: 25px;
+  color: $gray-200;
+}
+
+.menu__icon--dark {
+  color: $white-200;
+}
+
+.menu__hidden {
+  display: none;
+}
+
+.menu__hidden--show {
+  z-index: 10;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  padding: 5px;
+  border-radius: 3px;
+  list-style: none;
+  color: $gray-200;
+  background-color: $gray-100;
+  @include animation(0.2s);
+}
+
+.menu__hidden--dark {
+  background-color: $gray-200;
+  color: $white-100;
+}
+
+.menu__item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 70px;
+  font-size: 16px;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.menu__itemIcon {
+  margin-right: 10px;
+}
