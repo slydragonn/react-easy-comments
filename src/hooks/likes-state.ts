@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Params } from '../types'
 
-const useLikes = ({ commentId, likes, dislikes, currentUser, updateCommentLikes }: Params) => {
+const useLikes = ({
+  commentId,
+  likes,
+  dislikes,
+  currentUser,
+  updateCommentLikes
+}: Params) => {
   const [liked, setLiked] = useState(false)
   const [disliked, setDisliked] = useState(false)
   const [totalLikes, setLikes] = useState(likes)
@@ -23,16 +29,18 @@ const useLikes = ({ commentId, likes, dislikes, currentUser, updateCommentLikes 
       likes: totalLikes,
       dislikes: totalDislikes,
       currentUser: {
-        likes: currentUser.likes.includes(commentId) && liked
-          ? currentUser.likes
-          : liked
-          ? [...currentUser.likes, commentId]
-          : currentUser.likes.filter(id => id !== commentId),
-        dislikes: currentUser.dislikes.includes(commentId) && disliked
-          ? currentUser.dislikes
-          : disliked
-          ? [...currentUser.dislikes, commentId]
-          : currentUser.dislikes.filter(id => id !== commentId)
+        likes:
+          currentUser.likes.includes(commentId) && liked
+            ? currentUser.likes
+            : liked
+            ? [...currentUser.likes, commentId]
+            : currentUser.likes.filter(id => id !== commentId),
+        dislikes:
+          currentUser.dislikes.includes(commentId) && disliked
+            ? currentUser.dislikes
+            : disliked
+            ? [...currentUser.dislikes, commentId]
+            : currentUser.dislikes.filter(id => id !== commentId)
       }
     }
     updateCommentLikes(commentInfo)

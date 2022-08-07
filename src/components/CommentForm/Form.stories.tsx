@@ -16,7 +16,7 @@ export default {
       description: 'Component Theme',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'default' },
+        defaultValue: { summary: 'default' }
       },
       control: {
         type: 'select',

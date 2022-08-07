@@ -1,7 +1,7 @@
-$blue-100: #6AC1FF;
+$blue-100: #6ac1ff;
 $blue-200: #3eacfa;
-$white-100:#EFEFEF;
-$gray-200:#767676;
+$white-100: #efefef;
+$gray-200: #767676;
 $gray-300: #474747;
 
 .form {
@@ -22,8 +22,8 @@ $gray-300: #474747;
   background-color: transparent;
   font-size: 17px;
   color: $gray-300;
-  transition: border-bottom-color .3s;
-  
+  transition: border-bottom-color 0.3s;
+
   &:hover {
     border-bottom-color: $white-100;
   }
@@ -52,7 +52,7 @@ $gray-300: #474747;
   width: 30px;
   height: 30px;
   color: $blue-100;
-  transition: color .3s;
+  transition: color 0.3s;
   &:hover {
     color: $blue-200;
     cursor: pointer;

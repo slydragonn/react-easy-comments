@@ -13,27 +13,27 @@ const Template: ComponentStory<typeof LikesSection> = args => (
 
 export const Primary = Template.bind({})
 Primary.args = {
-  commentId: "123",
+  commentId: '123',
   currentUser: {
-    id: "001",
-    likes: ["123", "222"],
+    id: '001',
+    likes: ['123', '222'],
     dislikes: []
   },
   likes: 2,
   dislikes: 0,
-  updateCommentLikes: (commentLikes) => console.log(commentLikes)
+  updateCommentLikes: commentLikes => console.log(commentLikes)
 }
 
 export const Secundary = Template.bind({})
 Secundary.args = {
   theme: 'dark',
-  commentId: "123",
+  commentId: '123',
   currentUser: {
-    id: "001",
-    likes: ["123", "222"],
+    id: '001',
+    likes: ['123', '222'],
     dislikes: []
   },
   likes: 2,
   dislikes: 0,
-  updateCommentLikes: (commentLikes) => console.log(commentLikes)
+  updateCommentLikes: commentLikes => console.log(commentLikes)
 }

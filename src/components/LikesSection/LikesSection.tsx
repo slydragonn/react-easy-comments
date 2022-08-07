@@ -9,7 +9,6 @@ import { LikeParams, Theme } from '../../types'
 import { subNumber } from '../../utils'
 import './Likes.scss'
 
-
 export interface Props extends LikeParams {
   theme: Theme
 }
@@ -42,9 +41,13 @@ const LikesSection = ({
             })}
           />
         </button>
-        <span className={addClass("likesSection__counter",{
-          "likesSection__counter--dark": theme == 'dark'
-        })}>{subNumber(totalLikes)}</span>
+        <span
+          className={addClass('likesSection__counter', {
+            'likesSection__counter--dark': theme == 'dark'
+          })}
+        >
+          {subNumber(totalLikes)}
+        </span>
       </div>
       <div className="likesSection__container">
         <button onClick={() => handleLikes('dislike')} className="button">
@@ -56,9 +59,11 @@ const LikesSection = ({
             })}
           />
         </button>
-        <span className={addClass("likesSection__counter",{
-          "likesSection__counter--dark": theme == 'dark'
-        })}>
+        <span
+          className={addClass('likesSection__counter', {
+            'likesSection__counter--dark': theme == 'dark'
+          })}
+        >
           {subNumber(totalDislikes)}
         </span>
       </div>

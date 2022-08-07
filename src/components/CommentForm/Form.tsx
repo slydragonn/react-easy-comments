@@ -25,14 +25,16 @@ const CommentForm = ({ theme = 'default', initialValue, onSend }: Props) => {
         placeholder="Add a comment..."
         type="text"
         name="comment-form"
-        className={addClases("form__input", {
-          "form__input--dark": theme === 'dark'
+        className={addClases('form__input', {
+          'form__input--dark': theme === 'dark'
         })}
       />
       <button onClick={handleClick} className="form__button">
-        <IoMdSend className={addClases('form__send', {
-          'form__send--dark': theme === 'dark'
-        })}/>
+        <IoMdSend
+          className={addClases('form__send', {
+            'form__send--dark': theme === 'dark'
+          })}
+        />
       </button>
     </section>
   )

@@ -10,11 +10,20 @@ export interface Props {
 const Avatar = ({ name, image, profileLink }: Props) => {
   return (
     <section className="avatar">
-      <a href={profileLink ?? '#'} target="_blank" rel="noreferrer" className='avatar__link'>
+      <a
+        href={profileLink ?? '#'}
+        target="_blank"
+        rel="noreferrer"
+        className="avatar__link"
+      >
         {image ? (
-          <img className='avatar__icon' src={image} alt={`${name} profile image`} />
+          <img
+            className="avatar__icon"
+            src={image}
+            alt={`${name} profile image`}
+          />
         ) : (
-          <p className='avatar__char'>{name[0].toLocaleUpperCase()}</p>
+          <p className="avatar__char">{name[0].toLocaleUpperCase()}</p>
         )}
       </a>
     </section>

@@ -1,8 +1,8 @@
-$blue-100: #6AC1FF;
+$blue-100: #6ac1ff;
 $gray-100: #474747;
-$red-100: #F44336;
-$white-100: #EFEFEF;
-$white-200: #B8B8B8;
+$red-100: #f44336;
+$white-100: #efefef;
+$white-200: #b8b8b8;
 
 @mixin button-template($color, $size) {
   width: $size;
@@ -52,5 +52,5 @@ $white-200: #B8B8B8;
 }
 
 .button__dislike--enable {
-  @include button-template($red-100, 18px)
+  @include button-template($red-100, 18px);
 }
