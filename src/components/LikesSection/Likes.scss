@@ -17,6 +17,11 @@ $white-200: #b8b8b8;
   justify-content: space-around;
   max-width: 200px;
   height: 20px;
+  margin-top: 10px;
+}
+
+.likesSection--hidden {
+  display: none;
 }
 
 .likesSection__container {
@@ -28,7 +33,7 @@ $white-200: #b8b8b8;
   max-width: 70px;
   font-size: 14px;
   color: $gray-100;
-  margin-left: 5px;
+  margin: 0px 5px;
 }
 .likesSection__counter--dark {
   color: $white-100;

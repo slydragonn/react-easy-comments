@@ -1,3 +1,5 @@
+$blue-100: #6ac1ff;
+$blue-200: #3eacfa;
 $gray-100: #474747;
 $white-100: #efefef;
 
@@ -5,6 +7,7 @@ $white-100: #efefef;
   display: -webkit-box;
   width: 100%;
   height: auto;
+  padding-right: 5px;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
@@ -30,7 +33,7 @@ $white-100: #efefef;
   display: flex;
   width: 100px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 10px;
 
   &:hover {
@@ -63,4 +66,55 @@ $white-100: #efefef;
 
 .seemore__text--dark {
   color: $white-100;
+}
+
+.edit {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  display: -webkit-box;
+  width: calc(100% - 40px);
+  min-height: 100px;
+  padding: 5px;
+  border-radius: 3px;
+  resize: none;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  text-overflow: ellipsis;
+  font-weight: 100;
+  font-size: 16px;
+  color: $gray-100;
+  border: 1px solid $white-100;
+  transition: border-color .3s;
+
+  &:focus {
+    outline: none;
+    border-color: $blue-200;
+  }
+}
+
+.input--dark {
+  border-color: $gray-100;
+  color: $white-100;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+}
+
+.button__icon {
+  width: 30px;
+  height: 30px;
+  margin: 0px 5px;
+  color: $blue-100;
+  transition: color 0.3s;
+  &:hover {
+    color: $blue-200;
+    cursor: pointer;
+  }
 }

@@ -1,3 +1,6 @@
+import { UserLikes } from '.'
+import { Theme } from './theme'
+
 export interface Comment {
   commentId: string
   userId: string
@@ -13,6 +16,21 @@ export interface Comment {
 export interface CommentLikes {
   likes: number
   dislikes: number
+  currentUser: UserLikes
 }
 
 export type InitialComments = Array<any>
+
+type Filter = 'date' | 'likes'
+export interface Options {
+  placeholder?: string
+  theme?: Theme
+  editable?: boolean
+  erasable?: boolean
+  likes?: boolean[]
+  maxLength?: number
+  profileImage?: boolean
+  totalComments?: boolean
+  filter?: Array<boolean | Filter>
+  emojis?: boolean
+}

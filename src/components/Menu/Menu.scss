@@ -90,6 +90,14 @@ $white-200: #b8b8b8;
   }
 }
 
+.menu__item--cancel {
+  justify-content: center;
+}
+
+.menu__item--hidden {
+  display: none;
+}
+
 .menu__itemIcon {
   margin-right: 10px;
 }

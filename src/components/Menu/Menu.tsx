@@ -9,11 +9,12 @@ import './Menu.scss'
 export interface Props {
   theme: Theme
   commentId: string
+  edit: boolean
   onEdit: (commentId: string) => void
   onDelete: (commentId: string) => void
 }
 
-const Menu = ({ theme = 'default', commentId, onEdit, onDelete }: Props) => {
+const Menu = ({ theme = 'default', commentId, edit, onEdit, onDelete }: Props) => {
   const [show, setShow] = useState(false)
 
   const handleClick = () => {
@@ -48,12 +49,21 @@ const Menu = ({ theme = 'default', commentId, onEdit, onDelete }: Props) => {
           'menu__hidden--show': show
         })}
       >
-        <li className="menu__item" onClick={() => onEdit(commentId)}>
+        <li className={addClass("menu__item", {
+          "menu__item--hidden": edit
+        })}onClick={() => onEdit(commentId)}>
           <EditIcon className="menu__itemIcon" />
           Edit
         </li>
-        <li className="menu__item" onClick={() => onDelete(commentId)}>
+        <li className={addClass("menu__item", {
+          "menu__item--hidden": edit
+        })} onClick={() => onDelete(commentId)}>
           <DeleteIcon className="menu__itemIcon" /> Delete
+        </li>
+        <li className={addClass("menu__item", "menu__item--cancel", {
+          "menu__item--hidden": !edit
+        })} onClick={() => onEdit(commentId)}>
+          Cancel
         </li>
       </ul>
     </section>

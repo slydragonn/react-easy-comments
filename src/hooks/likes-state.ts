@@ -1,5 +1,62 @@
-import { useEffect, useState } from 'react'
-import { Params } from '../types'
+import { useEffect, useReducer } from 'react'
+import { LikeParams } from '../types'
+
+enum ActionKind {
+  Liked = 'liked',
+  Disliked = 'disliked',
+  LikesIncrement = 'likes/increment',
+  LikesDecrement = 'likes/decrement',
+  DislikesIncrement = 'dislikes/increment',
+  DislikesDecrement = 'dislikes/decrement'
+}
+
+interface Action {
+  type: ActionKind
+}
+
+interface LikesState {
+  liked: boolean
+  disliked: boolean
+  likesCount: number
+  dislikesCount: number
+}
+
+function reducer(state: LikesState, action: Action): LikesState {
+  switch (action.type) {
+    case ActionKind.Liked:
+      return {
+        ...state,
+        liked: !state.liked
+      }
+    case ActionKind.Disliked:
+      return {
+        ...state,
+        disliked: !state.disliked
+      }
+    case ActionKind.LikesIncrement:
+      return {
+        ...state,
+        likesCount: state.likesCount + 1
+      }
+    case ActionKind.LikesDecrement:
+      return {
+        ...state,
+        likesCount: state.likesCount - 1
+      }
+    case ActionKind.DislikesIncrement:
+      return {
+        ...state,
+        dislikesCount: state.dislikesCount + 1
+      }
+    case ActionKind.DislikesDecrement:
+      return {
+        ...state,
+        dislikesCount: state.dislikesCount - 1
+      }
+    default:
+      throw new Error('State Error in useLikes')
+  }
+}
 
 const useLikes = ({
   commentId,
@@ -7,78 +64,80 @@ const useLikes = ({
   dislikes,
   currentUser,
   updateCommentLikes
-}: Params) => {
-  const [liked, setLiked] = useState(false)
-  const [disliked, setDisliked] = useState(false)
-  const [totalLikes, setLikes] = useState(likes)
-  const [totalDislikes, setDislikes] = useState(dislikes)
+}: LikeParams) => {
+  const initialState: LikesState = {
+    liked: false,
+    disliked: false,
+    likesCount: likes,
+    dislikesCount: dislikes
+  }
+
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     const userLiked = currentUser.likes.includes(commentId)
     const userDisliked = currentUser.dislikes.includes(commentId)
 
     if (userDisliked) {
-      setDisliked(() => true)
+      return dispatch({ type: ActionKind.Disliked })
     } else if (userLiked) {
-      setLiked(() => true)
+      return dispatch({ type: ActionKind.Liked })
     }
   }, [])
 
   useEffect(() => {
     const commentInfo = {
-      likes: totalLikes,
-      dislikes: totalDislikes,
+      likes: state.likesCount,
+      dislikes: state.dislikesCount,
       currentUser: {
+        id: currentUser.id,
         likes:
-          currentUser.likes.includes(commentId) && liked
+          currentUser.likes.includes(commentId) && state.liked
             ? currentUser.likes
-            : liked
+            : state.liked
             ? [...currentUser.likes, commentId]
             : currentUser.likes.filter(id => id !== commentId),
         dislikes:
-          currentUser.dislikes.includes(commentId) && disliked
+          currentUser.dislikes.includes(commentId) && state.disliked
             ? currentUser.dislikes
-            : disliked
+            : state.disliked
             ? [...currentUser.dislikes, commentId]
             : currentUser.dislikes.filter(id => id !== commentId)
       }
     }
     updateCommentLikes(commentInfo)
-  }, [totalLikes, totalDislikes])
+  }, [state.likesCount, state.dislikesCount])
 
   const handleLikes = (context: 'like' | 'dislike') => {
     if (context === 'like') {
-      if (disliked) {
-        setDisliked(dislike => !dislike)
-        setDislikes(dislikes => dislikes - 1)
+      if (state.disliked) {
+        dispatch({ type: ActionKind.Disliked })
+        dispatch({ type: ActionKind.DislikesDecrement })
       }
-      if (liked) {
-        setLiked(like => !like)
-        return setLikes(likes => likes - 1)
+      if (state.liked) {
+        dispatch({ type: ActionKind.Liked })
+        return dispatch({ type: ActionKind.LikesDecrement })
       }
-      setLiked(like => !like)
-      return setLikes(likes => likes + 1)
+      dispatch({ type: ActionKind.Liked })
+      return dispatch({ type: ActionKind.LikesIncrement })
     }
 
     if (context === 'dislike') {
-      if (liked) {
-        setLiked(like => !like)
-        setLikes(likes => likes - 1)
+      if (state.liked) {
+        dispatch({ type: ActionKind.Liked })
+        dispatch({ type: ActionKind.LikesDecrement })
       }
-      if (disliked) {
-        setDisliked(dislike => !dislike)
-        return setDislikes(dislikes => dislikes - 1)
+      if (state.disliked) {
+        dispatch({ type: ActionKind.Disliked })
+        return dispatch({ type: ActionKind.DislikesDecrement })
       }
-      setDisliked(dislike => !dislike)
-      return setDislikes(dislikes => dislikes + 1)
+      dispatch({ type: ActionKind.Disliked })
+      return dispatch({ type: ActionKind.DislikesIncrement })
     }
   }
 
   return {
-    liked,
-    disliked,
-    totalLikes,
-    totalDislikes,
+    state,
     handleLikes
   }
 }

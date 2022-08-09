@@ -1,4 +1,5 @@
 import addClases from 'classnames'
+import DOMPurify from 'dompurify'
 import React, { useState } from 'react'
 import { IoMdSend } from 'react-icons/io'
 import './Form.scss'
@@ -13,7 +14,8 @@ const CommentForm = ({ theme = 'default', initialValue, onSend }: Props) => {
   const [formValue, setFormValue] = useState(initialValue ?? '')
 
   const handleClick = () => {
-    onSend(formValue)
+    const cleanValue = DOMPurify.sanitize(formValue)
+    onSend(cleanValue)
     return setFormValue(() => '')
   }
 

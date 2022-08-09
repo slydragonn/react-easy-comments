@@ -1,12 +1,17 @@
 import React from 'react'
 import useEasyComments, { Params } from '../../hooks'
-import Comment from '../Comment'
+import { Options } from '../../types'
+import { OneComment } from '../Comment'
+import CommentForm from '../CommentForm'
+import { CommentsLayout, MainLayout } from '../Layouts'
+import Avatar from '../User/Avatar'
+import './main.scss'
 
-interface Props extends Params {
-  options?: object
+export interface Props extends Params {
+  options?: Options
 }
 
-const defaultOptions = {
+const defaultOptions: Options = {
   placeholder: 'Add a comment...',
   theme: 'default',
   editable: true,
@@ -19,41 +24,46 @@ const defaultOptions = {
   emojis: false
 }
 
-const CommentsSection = (props: Props) => {
-  const { options = defaultOptions } = props
-  const { comments, handleSubmit, handleUpdate } = useEasyComments({
-    currentUser: props.currentUser,
-    initialComments: props.initialComments,
-    listeners: props.listeners
-  })
-
+const CommentsSection = ({
+  initialComments,
+  currentUser,
+  listeners,
+  options = defaultOptions
+}: Props) => {
+  const { comments, userLikes, handleSubmit, handleUpdate, handleDelete } =
+    useEasyComments({
+      currentUser,
+      initialComments,
+      listeners
+    })
+    
   return (
-    <section>
-      <section>
-        <p>{props.currentUser.name}</p>
-        <form
-          onSubmit={evt => {
-            evt.preventDefault()
-            const comment = document.getElementById(
-              'input-add-comment'
-            ) as HTMLInputElement
-            return handleSubmit(comment.value ?? '')
-          }}
-        >
-          <input id="input-add-comment" placeholder="Agregar comentario..." />
-          <button type="submit">Send</button>
-        </form>
+    <MainLayout>
+      <section className="send">
+        <Avatar
+          name={currentUser.name}
+          image={currentUser.avartarUrl}
+          profileLink={currentUser.linkProfile}
+        />
+        <CommentForm
+          theme={options.theme}
+          initialValue=""
+          onSend={handleSubmit}
+        />
       </section>
-      <section>
-        {comments.map(commen => (
-          <Comment
-            key={commen.commentId}
-            commentar={commen}
+      <CommentsLayout theme={options.theme}>
+        {comments.map(comment => (
+          <OneComment
+            key={comment.commentId}
+            theme={options.theme}
+            comment={comment}
+            user={userLikes}
             onUpdate={handleUpdate}
+            onDelete={handleDelete}
           />
         ))}
-      </section>
-    </section>
+      </CommentsLayout>
+    </MainLayout>
   )
 }
 

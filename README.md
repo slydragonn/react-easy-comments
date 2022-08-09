@@ -6,16 +6,17 @@ It's a light library with that you can do, comments sections easily.
 
 ## Check List
 
-* [ ] Theme Layout
+* [x] Theme Layout
+* [ ] Is Loggead
 * [x] Dark Theme
 * [x] Comment Form
 * [ ] More colors for Avatars
 * [x] Likes Section
-* [ ] Main Layout
-* [ ] Comment
+* [x] Main Layout
+* [x] Comment
 * [ ] Filter and total comments
-* [ ] Comments Section
-* [ ] DOM Purify
+* [x] Comments Section
+* [x] DOM Purify
 * [ ] i18n
 * [ ] Unit testing
 * [ ] Documentation

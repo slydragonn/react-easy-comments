@@ -1,0 +1,21 @@
+$gray-100: #DEDEDE;
+$gray-200: #767676;
+
+.comments {
+  max-height: 350px;
+  overflow-y: scroll;
+}
+.comments::-webkit-scrollbar {
+  width: 10px;
+}
+.comments::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.comments::-webkit-scrollbar-thumb {
+  background-color: $gray-100;
+  border-radius: 5px;
+}
+
+.comments--dark::-webkit-scrollbar-thumb {
+  background-color: $gray-200;
+}

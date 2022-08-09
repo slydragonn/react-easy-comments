@@ -11,17 +11,19 @@ import './Likes.scss'
 
 export interface Props extends LikeParams {
   theme: Theme
+  hide: boolean
 }
 
 const LikesSection = ({
   theme = 'default',
+  hide,
   commentId,
   currentUser,
   likes,
   dislikes,
   updateCommentLikes
 }: Props) => {
-  const { totalLikes, totalDislikes, liked, disliked, handleLikes } = useLikes({
+  const { state, handleLikes } = useLikes({
     commentId,
     likes,
     dislikes,
@@ -30,14 +32,18 @@ const LikesSection = ({
   })
 
   return (
-    <section className="likesSection">
+    <section
+      className={addClass('likesSection', {
+        'likesSection--hidden': hide
+      })}
+    >
       <div className="likesSection__container">
         <button onClick={() => handleLikes('like')} className="button">
           <LikeIcon
             className={addClass({
-              button__disable: theme === 'default' && !liked,
-              'button__disable--dark': theme === 'dark' && !liked,
-              'button__like--enable': liked
+              button__disable: theme === 'default' && !state.liked,
+              'button__disable--dark': theme === 'dark' && !state.liked,
+              'button__like--enable': state.liked
             })}
           />
         </button>
@@ -46,16 +52,16 @@ const LikesSection = ({
             'likesSection__counter--dark': theme == 'dark'
           })}
         >
-          {subNumber(totalLikes)}
+          {subNumber(state.likesCount)}
         </span>
       </div>
       <div className="likesSection__container">
         <button onClick={() => handleLikes('dislike')} className="button">
           <DislikeIcon
             className={addClass({
-              button__disable: theme === 'default' && !disliked,
-              'button__disable--dark': theme === 'dark' && !disliked,
-              'button__dislike--enable': disliked
+              button__disable: theme === 'default' && !state.disliked,
+              'button__disable--dark': theme === 'dark' && !state.disliked,
+              'button__dislike--enable': state.disliked
             })}
           />
         </button>
@@ -64,7 +70,7 @@ const LikesSection = ({
             'likesSection__counter--dark': theme == 'dark'
           })}
         >
-          {subNumber(totalDislikes)}
+          {subNumber(state.dislikesCount)}
         </span>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { CommentLikes } from './comments'
-interface CurrentUser {
+export interface CurrentUser {
   id: string
   likes: string[]
   dislikes: string[]
