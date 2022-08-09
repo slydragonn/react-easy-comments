@@ -1,22 +1,13 @@
-# React Easy Comments
+# React Easy Comments - _Alpha_
 
 It's a light library with that you can do, comments sections easily.
 
 * _Note: This Library work only with React_
 
-## Check List
+## TODO
 
-* [x] Theme Layout
-* [ ] Is Loggead
-* [x] Dark Theme
-* [x] Comment Form
+* [ ] Show comments without being logged in
 * [ ] More colors for Avatars
-* [x] Likes Section
-* [x] Main Layout
-* [x] Comment
 * [ ] Filter and total comments
-* [x] Comments Section
-* [x] DOM Purify
-* [ ] i18n
 * [ ] Unit testing
 * [ ] Documentation
