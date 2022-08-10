@@ -5,7 +5,7 @@ import { getTimeAgo } from '../../utils'
 import Avatar from './Avatar'
 import './User.scss'
 
-export interface Props {
+export interface UserProps {
   name: string
   image?: string
   profileLink?: string
@@ -19,7 +19,7 @@ const User = ({
   profileLink,
   creationDate,
   theme = 'default'
-}: Props) => {
+}: UserProps) => {
   return (
     <section className="user">
       <Avatar name={name} image={image} profileLink={profileLink} />

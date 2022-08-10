@@ -1,11 +1,11 @@
 import React from 'react'
 import './main.scss'
 
-export interface Props {
+export interface MainLayoutProps {
   children: React.ReactNode
 }
 
-const MainLayout = ({ children }: Props) => {
+const MainLayout = ({ children }: MainLayoutProps) => {
   return <main className="main">{children}</main>
 }
 

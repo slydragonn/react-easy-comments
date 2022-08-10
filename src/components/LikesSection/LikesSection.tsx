@@ -9,7 +9,7 @@ import { LikeParams, Theme } from '../../types'
 import { subNumber } from '../../utils'
 import './Likes.scss'
 
-export interface Props extends LikeParams {
+export interface LikeProps extends LikeParams {
   theme: Theme
   hide: boolean
 }
@@ -22,7 +22,7 @@ const LikesSection = ({
   likes,
   dislikes,
   updateCommentLikes
-}: Props) => {
+}: LikeProps) => {
   const { state, handleLikes } = useLikes({
     commentId,
     likes,

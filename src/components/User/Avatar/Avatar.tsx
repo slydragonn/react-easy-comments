@@ -1,13 +1,13 @@
 import React from 'react'
 import './Avatar.scss'
 
-export interface Props {
+export interface AvatarProps {
   name: string
   image?: string
   profileLink?: string
 }
 
-const Avatar = ({ name, image, profileLink }: Props) => {
+const Avatar = ({ name, image, profileLink }: AvatarProps) => {
   return (
     <section className="avatar">
       <a

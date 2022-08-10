@@ -7,7 +7,7 @@ import { CommentsLayout, MainLayout } from '../Layouts'
 import Avatar from '../User/Avatar'
 import './main.scss'
 
-export interface Props extends Params {
+export interface CommentsSectionProps extends Params {
   options?: Options
 }
 
@@ -29,14 +29,14 @@ const CommentsSection = ({
   currentUser,
   listeners,
   options = defaultOptions
-}: Props) => {
+}: CommentsSectionProps) => {
   const { comments, userLikes, handleSubmit, handleUpdate, handleDelete } =
     useEasyComments({
       currentUser,
       initialComments,
       listeners
     })
-    
+
   return (
     <MainLayout>
       <section className="send">

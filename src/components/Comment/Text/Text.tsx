@@ -1,5 +1,5 @@
 import addClass from 'classnames'
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   BsFillCaretDownFill as DownIcon,
   BsFillCaretUpFill as UpIcon
@@ -8,15 +8,21 @@ import { IoMdSend } from 'react-icons/io'
 import { Theme } from '../../../types'
 import './Text.scss'
 
-export interface Props {
+export interface TextProps {
   children: string
   theme: Theme
   edit: boolean
   onEdited: () => void
-  onChange: (comment:string) => void
+  onChange: (comment: string) => void
 }
 
-const Text = ({ children, theme = 'default', edit, onEdited, onChange }: Props) => {
+const Text = ({
+  children,
+  theme = 'default',
+  edit,
+  onEdited,
+  onChange
+}: TextProps) => {
   const [showSeeMore, setShowSeeMore] = useState(false)
   const [showAll, setShowAll] = useState(false)
   const textContainer = useRef<HTMLElement>(null)
@@ -26,7 +32,7 @@ const Text = ({ children, theme = 'default', edit, onEdited, onChange }: Props) 
     height > 68 ? setShowSeeMore(() => true) : setShowSeeMore(() => false)
   }, [height])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const updateSize = () => {
       setHeight(() => textContainer.current?.clientHeight ?? 0)
     }

@@ -19,7 +19,9 @@ const useEasyComments = ({
   currentUser,
   listeners
 }: Params): EasyComments => {
-  const [comments, setComments] = useState<Comment[]>(initialComments[0].map(initialComments[1]))
+  const [comments, setComments] = useState<Comment[]>(
+    initialComments[0].map(initialComments[1])
+  )
 
   const currentUserLikes = {
     id: currentUser?.id ?? '',
@@ -32,7 +34,7 @@ const useEasyComments = ({
   const { onSubmit, onUpdate, onDelete } = listeners
 
   const handleSubmit = async (commentValue: string) => {
-    if(currentUser) {
+    if (currentUser) {
       try {
         const comment = {
           userId: currentUser.id,
@@ -98,20 +100,20 @@ const useEasyComments = ({
   )
 
   const handleDelete = async (id: string) => {
-    if(currentUser) {
+    if (currentUser) {
       try {
         const { userId } = comments.find(
           comment => comment.commentId === id
         ) as Comment
-  
+
         if (currentUser.id === userId) {
           await onDelete(id)
-  
+
           const deleteComment = comments.filter(
             comment => comment.commentId !== id
           )
           setComments(() => deleteComment)
-  
+
           const deleteLikedComment = userLikes.likes.filter(
             commentId => commentId !== id
           )

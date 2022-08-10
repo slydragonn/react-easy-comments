@@ -12,7 +12,7 @@ import User from '../User'
 import './Comment.scss'
 import Text from './Text'
 
-export interface Props {
+export interface CommentProps {
   theme?: Theme
   user: UserLikes
   comment: CommentType
@@ -26,7 +26,7 @@ const Comment = ({
   comment,
   onUpdate,
   onDelete
-}: Props) => {
+}: CommentProps) => {
   const [isCurrentUser, setIsCurrentUser] = useState(false)
   const [editComment, setEditComment] = useState(false)
   const [commentValue, setCommentValue] = useState(comment.comment)
@@ -41,7 +41,7 @@ const Comment = ({
 
   const handleEdit = () => {
     setCommentValue(() => comment.comment)
-    return setEditComment((edit) => !edit)
+    return setEditComment(edit => !edit)
   }
 
   const handleChange = (comment: string) => {
@@ -49,7 +49,7 @@ const Comment = ({
   }
 
   const handleEdited = () => {
-    if(commentValue.length > 0) {
+    if (commentValue.length > 0) {
       setEditComment(() => false)
       const cleanValue = DOMPurify.sanitize(commentValue)
 
@@ -103,7 +103,12 @@ const Comment = ({
         )}
       </div>
       <div className="comment__info">
-        <Text theme={theme} edit={editComment} onEdited={handleEdited} onChange={handleChange}>
+        <Text
+          theme={theme}
+          edit={editComment}
+          onEdited={handleEdited}
+          onChange={handleChange}
+        >
           {commentValue}
         </Text>
         <LikesSection

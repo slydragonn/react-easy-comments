@@ -1,2 +1,7 @@
-export { default as Button } from './Button'
+export { OneComment, Text } from './Comment'
+export { default as CommentForm } from './CommentForm'
 export { default as CommentsSection } from './CommentsSection'
+export { CommentsLayout, MainLayout } from './Layouts'
+export { default as LikesSection } from './LikesSection'
+export { default as Menu } from './Menu'
+export { Avatar, default as User } from './User'
