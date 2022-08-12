@@ -1,11 +1,11 @@
 import { UserLikes } from '.'
-import { Comment } from './comments'
+import { EasyComment } from './comments'
 
 export interface EasyComments {
-  comments: Array<Comment>
+  comments: Array<EasyComment>
   userLikes: UserLikes
   handleSubmit: (comment: string) => void
-  handleUpdate: (comment: Comment, currentUser: UserLikes) => void
+  handleUpdate: (comment: EasyComment, currentUser: UserLikes) => void
   handleDelete: (commentId: string) => void
 }
 
@@ -19,6 +19,6 @@ export interface CommentSubmit {
 
 export interface Listeners {
   onSubmit: (comment: CommentSubmit) => void
-  onUpdate: (comment: Comment, currentUser: UserLikes) => void
+  onUpdate: (comment: EasyComment, currentUser: UserLikes) => void
   onDelete: (commentId: string) => void
 }

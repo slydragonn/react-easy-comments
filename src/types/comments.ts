@@ -1,7 +1,7 @@
 import { UserLikes } from '.'
 import { Theme } from './theme'
 
-export interface Comment {
+export interface EasyComment {
   commentId: string
   userId: string
   username: string
