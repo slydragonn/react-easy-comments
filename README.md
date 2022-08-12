@@ -2,10 +2,10 @@
 
 <p align='center'><img  alt='easy comments logo' src='./docs/Vector.png'/></p>
 
-<h2 align='center'>Create comments sections easily</h2>
+<h2 align='center'>Create comment sections easily</h2>
 <br>
 
-It's a simple library with that you can create a React Comments Sections Component.
+It's a simple library with that you can create a React Comment Sections Component.
 
 ## To-do
 
