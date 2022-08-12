@@ -10,7 +10,7 @@ export interface MenuProps {
   theme: Theme
   commentId: string
   edit: boolean
-  onEdit: (commentId: string) => void
+  onEdit: (context: 'cancel' | 'edit') => void
   onDelete: (commentId: string) => void
 }
 
@@ -59,7 +59,7 @@ const Menu = ({
           className={addClass('menu__item', {
             'menu__item--hidden': edit
           })}
-          onClick={() => onEdit(commentId)}
+          onClick={() => onEdit('edit')}
         >
           <EditIcon className="menu__itemIcon" />
           Edit
@@ -76,7 +76,7 @@ const Menu = ({
           className={addClass('menu__item', 'menu__item--cancel', {
             'menu__item--hidden': !edit
           })}
-          onClick={() => onEdit(commentId)}
+          onClick={() => onEdit('cancel')}
         >
           Cancel
         </li>

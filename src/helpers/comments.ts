@@ -6,9 +6,7 @@ const comments = [
     comment: 'Hello World!',
     creationDate: '03-05-2020',
     likes: 4,
-    dislikes: 0,
-    avatarUrl: 'https://avatars.dicebear.com/api/big-smile/juan.svg',
-    profileLink: 'https://avatars.dicebear.com/api/big-smile/juan.svg'
+    dislikes: 0
   },
   {
     commentId: '2',
@@ -18,9 +16,7 @@ const comments = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deserunt aut excepturi itaque magni commodi fugiat accusamus iusto nesciunt minima! Error harum corporis recusandae non, in eveniet maiores repellendus repellat!',
     creationDate: '03-06-2022',
     likes: 10,
-    dislikes: 2,
-    avatarUrl: 'https://avatars.dicebear.com/api/big-smile/juan.svg',
-    profileLink: 'https://avatars.dicebear.com/api/big-smile/juan.svg'
+    dislikes: 2
   },
   {
     commentId: '3',
@@ -30,11 +26,7 @@ const comments = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deserunt aut excepturi itaque magni commodi fugiat accusamus iusto nesciunt minima! Error harum corporis recusandae non, in eveniet maiores repellendus repellat!',
     creationDate: '03-06-2022',
     likes: 10,
-    dislikes: 2,
-    avatarUrl:
-      'https://avatars.dicebear.com/api/adventurer-neutral/alejandro.svg',
-    profileLink:
-      'https://avatars.dicebear.com/api/adventurer-neutral/alejandro.svg'
+    dislikes: 2
   },
   {
     commentId: '4',
@@ -43,8 +35,7 @@ const comments = [
     comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     creationDate: '03-04-2019',
     likes: 1,
-    dislikes: 30,
-    avatarUrl: 'https://avatars.dicebear.com/api/croodles/diego.svg'
+    dislikes: 30
   },
   {
     commentId: '5',
@@ -54,9 +45,7 @@ const comments = [
       'Error deserunt aut excepturi itaque magni commodi fugiat accusamus iusto nesciunt minima! Error harum corporis recusandae non, in eveniet maiores repellendus repellat!.',
     creationDate: '06-07-2015',
     likes: 19,
-    dislikes: 9,
-    profileLink:
-      'https://avatars.dicebear.com/api/adventurer-neutral/alejandro.svg'
+    dislikes: 9
   }
 ]
 

@@ -1,9 +1,7 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import {
-  Comment,
-  CurrentUser,
-  EasyComments,
+  CurrentUser, EasyComment, EasyComments,
   InitialComments,
   Listeners,
   UserLikes
@@ -19,7 +17,7 @@ const useEasyComments = ({
   currentUser,
   listeners
 }: Params): EasyComments => {
-  const [comments, setComments] = useState<Comment[]>(
+  const [comments, setComments] = useState<EasyComment[]>(
     initialComments[0].map(initialComments[1])
   )
 
@@ -34,6 +32,7 @@ const useEasyComments = ({
   const { onSubmit, onUpdate, onDelete } = listeners
 
   const handleSubmit = async (commentValue: string) => {
+    if(commentValue.length < 1) return
     if (currentUser) {
       try {
         const comment = {
@@ -49,8 +48,8 @@ const useEasyComments = ({
           ...comment,
           commentId: uuid()
         }
-        const addComment = [...comments, newComment]
-        return setComments(() => addComment)
+        const addedComment = [...comments, newComment]
+        return setComments(() => addedComment)
       } catch (error) {
         console.log(error)
       }
@@ -58,25 +57,21 @@ const useEasyComments = ({
     return
   }
 
-  const handleUpdate = useCallback(
-    async (comment: Comment, currentUser: UserLikes) => {
+  const handleUpdate = async (comment: EasyComment, currentUser: UserLikes) => {
       try {
         if (comment.userId === currentUser.id) {
           await onUpdate(comment, currentUser)
+          const updatedCommentIndex = comments.findIndex(el => el.commentId === comment.commentId)
+          const commentsCopy = [...comments]
+          commentsCopy[updatedCommentIndex] = comment
 
-          const deleteUpdatedComment = comments.filter(
-            (com: Comment) => com.commentId !== comment.commentId
-          )
-
-          const updatedComment = comment
-
-          setComments(() => [...deleteUpdatedComment, updatedComment])
+          setComments(() => commentsCopy)
           return setUserLikes(() => currentUser)
         }
 
         const likedComment = comments.find(
-          (com: Comment) => com.commentId === comment.commentId
-        ) as Comment
+          (com: EasyComment) => com.commentId === comment.commentId
+        ) as EasyComment
 
         const updatedComment = {
           ...likedComment,
@@ -86,25 +81,24 @@ const useEasyComments = ({
 
         await onUpdate(updatedComment, currentUser)
 
-        const deleteUpdatedComment = comments.filter(
-          (com: Comment) => com.commentId !== comment.commentId
-        )
+        const updatedCommentIndex = comments.findIndex(el => el.commentId === updatedComment.commentId)
+        const commentsCopy = [...comments]
+        commentsCopy[updatedCommentIndex] = updatedComment
 
-        setComments(() => [...deleteUpdatedComment, updatedComment])
+        setComments(() => commentsCopy)
         return setUserLikes(() => currentUser)
       } catch (error) {
         console.log(error)
       }
-    },
-    [comments]
-  )
+    }
+  
 
   const handleDelete = async (id: string) => {
     if (currentUser) {
       try {
         const { userId } = comments.find(
           comment => comment.commentId === id
-        ) as Comment
+        ) as EasyComment
 
         if (currentUser.id === userId) {
           await onDelete(id)

@@ -1,9 +1,7 @@
 import DOMPurify from 'dompurify'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Comment as CommentType,
-  CommentLikes,
-  Theme,
+  CommentLikes, EasyComment, Theme,
   UserLikes
 } from '../../types'
 import LikesSection from '../LikesSection'
@@ -15,8 +13,8 @@ import Text from './Text'
 export interface CommentProps {
   theme?: Theme
   user: UserLikes
-  comment: CommentType
-  onUpdate: (comment: CommentType, currentUser: UserLikes) => void
+  comment: EasyComment
+  onUpdate: (comment: EasyComment, currentUser: UserLikes) => void
   onDelete: (commentId: string) => void
 }
 
@@ -39,8 +37,10 @@ const Comment = ({
     return onDelete(commentId)
   }
 
-  const handleEdit = () => {
-    setCommentValue(() => comment.comment)
+  const handleToggleEdit = (context: string) => {
+    if(context === 'cancel' && commentValue != comment.comment){
+      setCommentValue(() => comment.comment)
+    }
     return setEditComment(edit => !edit)
   }
 
@@ -59,13 +59,11 @@ const Comment = ({
       }
       return onUpdate(commentEdited, user)
     }
-    console.log('hello')
     setCommentValue(() => comment.comment)
     return setEditComment(() => false)
   }
 
-  const handleLikes = useCallback(
-    (commentLikes: CommentLikes) => {
+  const handleLikes = (commentLikes: CommentLikes) => {
       const updatedComment = {
         ...comment,
         likes: commentLikes.likes,
@@ -78,9 +76,7 @@ const Comment = ({
         dislikes: commentLikes.currentUser.dislikes
       }
       return onUpdate(updatedComment, updatedUserLikes)
-    },
-    [comment, user]
-  )
+}
 
   return (
     <section className="comment">
@@ -97,7 +93,7 @@ const Comment = ({
             theme={theme}
             commentId={comment.commentId}
             edit={editComment}
-            onEdit={handleEdit}
+            onEdit={handleToggleEdit}
             onDelete={handleDelete}
           />
         )}

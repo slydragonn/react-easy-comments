@@ -2,7 +2,9 @@ import { useEffect, useReducer } from 'react'
 import { LikeParams } from '../types'
 
 enum ActionKind {
+  Like = 'like',
   Liked = 'liked',
+  Dislike = 'dislike',
   Disliked = 'disliked',
   LikesIncrement = 'likes/increment',
   LikesDecrement = 'likes/decrement',
@@ -23,15 +25,25 @@ interface LikesState {
 
 function reducer(state: LikesState, action: Action): LikesState {
   switch (action.type) {
+    case ActionKind.Like:
+      return {
+        ...state,
+        liked: false
+      }
     case ActionKind.Liked:
       return {
         ...state,
-        liked: !state.liked
+        liked: true
+      }
+    case ActionKind.Dislike:
+      return {
+        ...state,
+        disliked: false
       }
     case ActionKind.Disliked:
       return {
         ...state,
-        disliked: !state.disliked
+        disliked: true
       }
     case ActionKind.LikesIncrement:
       return {
@@ -105,17 +117,19 @@ const useLikes = ({
             : currentUser.dislikes.filter(id => id !== commentId)
       }
     }
+
     updateCommentLikes(commentInfo)
+
   }, [state.likesCount, state.dislikesCount])
 
   const handleLikes = (context: 'like' | 'dislike') => {
     if (context === 'like') {
       if (state.disliked) {
-        dispatch({ type: ActionKind.Disliked })
+        dispatch({ type: ActionKind.Dislike })
         dispatch({ type: ActionKind.DislikesDecrement })
       }
       if (state.liked) {
-        dispatch({ type: ActionKind.Liked })
+        dispatch({ type: ActionKind.Like })
         return dispatch({ type: ActionKind.LikesDecrement })
       }
       dispatch({ type: ActionKind.Liked })
@@ -124,11 +138,11 @@ const useLikes = ({
 
     if (context === 'dislike') {
       if (state.liked) {
-        dispatch({ type: ActionKind.Liked })
+        dispatch({ type: ActionKind.Like })
         dispatch({ type: ActionKind.LikesDecrement })
       }
       if (state.disliked) {
-        dispatch({ type: ActionKind.Disliked })
+        dispatch({ type: ActionKind.Dislike })
         return dispatch({ type: ActionKind.DislikesDecrement })
       }
       dispatch({ type: ActionKind.Disliked })

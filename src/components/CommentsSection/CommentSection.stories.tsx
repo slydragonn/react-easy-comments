@@ -17,8 +17,6 @@ Primary.args = {
   currentUser: {
     id: currentUser.id,
     name: currentUser.name,
-    avartarUrl: currentUser.avartarUrl,
-    linkProfile: currentUser.linkProfile,
     likes: currentUser.likes,
     dislikes: currentUser.dislikes
   },
@@ -31,9 +29,7 @@ Primary.args = {
       comment: el.comment,
       creationDate: el.creationDate,
       likes: el.likes,
-      dislikes: el.dislikes,
-      avatarUrl: el.avatarUrl,
-      profileLink: el.profileLink
+      dislikes: el.dislikes
     })
   ],
   listeners: {
@@ -53,8 +49,6 @@ Secundary.args = {
   currentUser: {
     id: currentUser.id,
     name: currentUser.name,
-    avartarUrl: currentUser.avartarUrl,
-    linkProfile: currentUser.linkProfile,
     likes: currentUser.likes,
     dislikes: currentUser.dislikes
   },
@@ -67,9 +61,7 @@ Secundary.args = {
       comment: el.comment,
       creationDate: el.creationDate,
       likes: el.likes,
-      dislikes: el.dislikes,
-      avatarUrl: el.avatarUrl,
-      profileLink: el.profileLink
+      dislikes: el.dislikes
     })
   ],
   listeners: {
