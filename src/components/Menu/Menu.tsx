@@ -1,5 +1,5 @@
 import addClass from 'classnames'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineMore as MenuIcon } from 'react-icons/ai'
 import { MdModeEdit as EditIcon } from 'react-icons/md'
 import { RiDeleteBin4Fill as DeleteIcon } from 'react-icons/ri'
@@ -27,29 +27,35 @@ const Menu = ({
     setShow(show => !show)
   }
 
-  const handleBlur = () => {
-    return (
-      show &&
-      setTimeout(() => {
+  useEffect(() => {
+    const onClick = (event: MouseEvent) => {
+      if (!(event.target as HTMLElement).matches('#menu__icon' + commentId) && !(event.target as HTMLElement).matches('#menu' + commentId)) {
         setShow(() => false)
-      }, 300)
-    )
-  }
+      }
+    }
+
+    window.addEventListener('click', onClick)
+
+    return () => {
+      window.removeEventListener('click', (event: MouseEvent) => onClick(event))
+    }
+  }, [])
 
   return (
     <section className="menu">
       <button
         className="menu__button"
         onClick={handleClick}
-        onBlur={handleBlur}
       >
         <MenuIcon
+          id={'menu__icon' + commentId}
           className={addClass('menu__icon', {
             'menu__icon--dark': theme === 'dark'
           })}
         />
       </button>
       <ul
+        id={'menu' + commentId}
         className={addClass('menu__hidden', {
           'menu__hidden--dark': theme === 'dark',
           'menu__hidden--show': show

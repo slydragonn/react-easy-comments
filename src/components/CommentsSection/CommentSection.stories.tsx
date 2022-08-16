@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React from 'react'
 import { comments, currentUser } from '../../helpers'
