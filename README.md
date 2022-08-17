@@ -7,10 +7,10 @@
 
 It's a simple library with that you can create a React Comment Sections Component.
 
-<p align='center'><img  style='border-radius: 5px' alt='easy comments logo' src='./docs/capture_1.png'/></p>
-<p align='center'><img style='border-radius: 5px' alt='easy comments logo' src='./docs/capture_3.png'/></p>
-<div style='display: flex; justify-content: space-around'><p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_2.png'/></p>
-<p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_4.png'/></p></div>
+<p align='center'><img  style='border-radius: 5px' alt='easy comments logo' src='./docs/capture_1.PNG'/></p>
+<p align='center'><img style='border-radius: 5px' alt='easy comments logo' src='./docs/capture_3.PNG'/></p>
+<div style='display: flex; justify-content: space-around'><p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_2.PNG'/></p>
+<p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_4.PNG'/></p></div>
 
 ## To-do
 
