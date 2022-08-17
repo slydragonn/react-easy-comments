@@ -7,10 +7,14 @@
 
 It's a simple library with that you can create a React Comment Sections Component.
 
+<p align='center'><img  style='border-radius: 5px' alt='easy comments logo' src='./docs/capture_1.png'/></p>
+<p align='center'><img style='border-radius: 5px' alt='easy comments logo' src='./docs/capture_3.png'/></p>
+<div style='display: flex; justify-content: space-around'><p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_2.png'/></p>
+<p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_4.png'/></p></div>
+
 ## To-do
 
 * [ ] Implement the options props
-* [ ] Filter and total comments
 * [ ] Show comments without being logged in
 * [ ] More colors for Avatars
 * [ ] Testing
@@ -78,7 +82,7 @@ export default App
 
 ```
 
-* __currentUser__: Accept an object with these properties
+* __currentUser__: Accept an object with these properties. The dislikes and likes properties are arrays with the comment id that the current user like or disliked.
 
 ```ts
 currentUser {
