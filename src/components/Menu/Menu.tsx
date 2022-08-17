@@ -1,8 +1,9 @@
 import addClass from 'classnames'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineMore as MenuIcon } from 'react-icons/ai'
 import { MdModeEdit as EditIcon } from 'react-icons/md'
 import { RiDeleteBin4Fill as DeleteIcon } from 'react-icons/ri'
+import { useMenu } from '../../hooks'
 import { Theme } from '../../types'
 import './Menu.scss'
 
@@ -27,22 +28,10 @@ const Menu = ({
     setShow(show => !show)
   }
 
-  useEffect(() => {
-    const onClick = (event: MouseEvent) => {
-      if (
-        !(event.target as HTMLElement).matches('#menu__icon' + commentId) &&
-        !(event.target as HTMLElement).matches('#menu' + commentId)
-      ) {
-        setShow(() => false)
-      }
-    }
-
-    window.addEventListener('click', onClick)
-
-    return () => {
-      window.removeEventListener('click', (event: MouseEvent) => onClick(event))
-    }
-  }, [])
+  useMenu({
+    func: () => setShow(() => false),
+    selectors: ['#menu__icon' + commentId, '#menu' + commentId]
+  })
 
   return (
     <section className="menu">
