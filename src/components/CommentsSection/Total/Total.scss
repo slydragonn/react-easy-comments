@@ -1,0 +1,20 @@
+$black: #2F2F2F;
+$white: #FFFFFF;
+
+.count {
+  display: flex;
+  width: 150px;
+  justify-content: flex-start;
+  margin-left: 5px;
+  color: $black;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.count--dark {
+  color: $white;
+}
+
+.count > p > span {
+  margin-right: 5px;
+}

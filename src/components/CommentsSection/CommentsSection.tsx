@@ -6,6 +6,7 @@ import CommentForm from '../CommentForm'
 import { CommentsLayout, MainLayout } from '../Layouts'
 import Avatar from '../User/Avatar'
 import './main.scss'
+import TotalComments from './Total'
 
 export interface CommentsSectionProps extends Params {
   options?: Options
@@ -50,6 +51,9 @@ const CommentsSection = ({
           initialValue=""
           onSend={handleSubmit}
         />
+      </section>
+      <section className="commentsInfo">
+        <TotalComments theme={options.theme} comments={comments} />
       </section>
       <CommentsLayout theme={options.theme}>
         {comments.map(comment => (

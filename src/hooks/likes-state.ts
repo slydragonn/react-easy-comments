@@ -119,7 +119,6 @@ const useLikes = ({
     }
 
     updateCommentLikes(commentInfo)
-
   }, [state.likesCount, state.dislikesCount])
 
   const handleLikes = (context: 'like' | 'dislike') => {

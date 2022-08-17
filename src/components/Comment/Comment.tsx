@@ -1,9 +1,6 @@
 import DOMPurify from 'dompurify'
 import React, { useEffect, useState } from 'react'
-import {
-  CommentLikes, EasyComment, Theme,
-  UserLikes
-} from '../../types'
+import { CommentLikes, EasyComment, Theme, UserLikes } from '../../types'
 import LikesSection from '../LikesSection'
 import Menu from '../Menu'
 import User from '../User'
@@ -38,7 +35,7 @@ const Comment = ({
   }
 
   const handleToggleEdit = (context: string) => {
-    if(context === 'cancel' && commentValue != comment.comment){
+    if (context === 'cancel' && commentValue != comment.comment) {
       setCommentValue(() => comment.comment)
     }
     return setEditComment(edit => !edit)
@@ -64,19 +61,19 @@ const Comment = ({
   }
 
   const handleLikes = (commentLikes: CommentLikes) => {
-      const updatedComment = {
-        ...comment,
-        likes: commentLikes.likes,
-        dislikes: commentLikes.dislikes
-      }
+    const updatedComment = {
+      ...comment,
+      likes: commentLikes.likes,
+      dislikes: commentLikes.dislikes
+    }
 
-      const updatedUserLikes: UserLikes = {
-        ...user,
-        likes: commentLikes.currentUser.likes,
-        dislikes: commentLikes.currentUser.dislikes
-      }
-      return onUpdate(updatedComment, updatedUserLikes)
-}
+    const updatedUserLikes: UserLikes = {
+      ...user,
+      likes: commentLikes.currentUser.likes,
+      dislikes: commentLikes.currentUser.dislikes
+    }
+    return onUpdate(updatedComment, updatedUserLikes)
+  }
 
   return (
     <section className="comment">

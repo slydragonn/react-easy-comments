@@ -29,7 +29,10 @@ const Menu = ({
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
-      if (!(event.target as HTMLElement).matches('#menu__icon' + commentId) && !(event.target as HTMLElement).matches('#menu' + commentId)) {
+      if (
+        !(event.target as HTMLElement).matches('#menu__icon' + commentId) &&
+        !(event.target as HTMLElement).matches('#menu' + commentId)
+      ) {
         setShow(() => false)
       }
     }
@@ -43,10 +46,7 @@ const Menu = ({
 
   return (
     <section className="menu">
-      <button
-        className="menu__button"
-        onClick={handleClick}
-      >
+      <button className="menu__button" onClick={handleClick}>
         <MenuIcon
           id={'menu__icon' + commentId}
           className={addClass('menu__icon', {
