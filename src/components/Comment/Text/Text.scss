@@ -89,7 +89,7 @@ $white-100: #efefef;
   font-size: 16px;
   color: $gray-100;
   border: 1px solid $white-100;
-  transition: border-color .3s;
+  transition: border-color 0.3s;
 
   &:focus {
     outline: none;
@@ -98,6 +98,7 @@ $white-100: #efefef;
 }
 
 .input--dark {
+  background-color: $gray-100;
   border-color: $gray-100;
   color: $white-100;
 }
