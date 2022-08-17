@@ -19,9 +19,10 @@ export interface CommentLikes {
   currentUser: UserLikes
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type InitialComments = Array<any>
 
-type Filter = 'date' | 'likes'
+export type Filter = 'date' | 'likes'
 export interface Options {
   placeholder?: string
   theme?: Theme
@@ -31,6 +32,18 @@ export interface Options {
   maxLength?: number
   profileImage?: boolean
   totalComments?: boolean
-  filter?: Array<boolean | Filter>
+  filter?: [boolean, Filter]
   emojis?: boolean
+}
+export interface DefaultOptions {
+  placeholder: string
+  theme: Theme
+  editable: boolean
+  erasable: boolean
+  likes: boolean[]
+  maxLength: number
+  profileImage: boolean
+  totalComments: boolean
+  filter: [boolean, Filter]
+  emojis: boolean
 }

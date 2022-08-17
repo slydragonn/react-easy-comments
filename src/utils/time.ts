@@ -44,4 +44,11 @@ const getTimeAgo = (date: string | Date | number) => {
   return 'Just now'
 }
 
+export function getMostRecentTime(date: string | Date) {
+  const sumDate = dateFormat(date, 'M-H-d-m-yyyy')
+    .split('-')
+    .reduce((pre, cur) => cur + pre)
+  return Number(sumDate)
+}
+
 export default getTimeAgo

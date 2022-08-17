@@ -7,6 +7,7 @@ export interface EasyComments {
   handleSubmit: (comment: string) => void
   handleUpdate: (comment: EasyComment, currentUser: UserLikes) => void
   handleDelete: (commentId: string) => void
+  toggleSort: (kind: 'date' | 'likes') => void
 }
 
 export interface CommentSubmit {

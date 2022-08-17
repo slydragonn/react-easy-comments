@@ -4,20 +4,24 @@ import {
   CurrentUser,
   EasyComment,
   EasyComments,
+  Filter,
   InitialComments,
   Listeners,
   UserLikes
 } from '../types'
+import useSort from './sort'
 export interface Params {
   currentUser: CurrentUser
   initialComments: InitialComments
   listeners: Listeners
+  filter: Filter
 }
 
 const useEasyComments = ({
   initialComments,
   currentUser,
-  listeners
+  listeners,
+  filter
 }: Params): EasyComments => {
   const [comments, setComments] = useState<EasyComment[]>(
     initialComments[0].map(initialComments[1])
@@ -67,7 +71,14 @@ const useEasyComments = ({
           el => el.commentId === comment.commentId
         )
         const commentsCopy = [...comments]
-        commentsCopy[updatedCommentIndex] = comment
+        const updateComment: EasyComment = {
+          ...comment,
+          creationDate:
+            comment.comment !== commentsCopy[updatedCommentIndex].comment
+              ? new Date().toString()
+              : comment.creationDate
+        }
+        commentsCopy[updatedCommentIndex] = updateComment
 
         setComments(() => commentsCopy)
         return setUserLikes(() => currentUser)
@@ -131,12 +142,18 @@ const useEasyComments = ({
     }
   }
 
+  const [toggleSort, sortedComments] = useSort({
+    sortBy: filter,
+    comments
+  })
+
   return {
-    comments,
+    comments: sortedComments,
     userLikes,
     handleSubmit,
     handleUpdate,
-    handleDelete
+    handleDelete,
+    toggleSort
   }
 }
 

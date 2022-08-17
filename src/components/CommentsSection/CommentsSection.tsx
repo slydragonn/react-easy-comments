@@ -1,18 +1,20 @@
 import React from 'react'
 import useEasyComments, { Params } from '../../hooks'
 import { Options } from '../../types'
+import { DefaultOptions } from '../../types/comments'
 import { OneComment } from '../Comment'
 import CommentForm from '../CommentForm'
 import { CommentsLayout, MainLayout } from '../Layouts'
 import Avatar from '../User/Avatar'
 import './main.scss'
+import SortComments from './Sort'
 import TotalComments from './Total'
 
 export interface CommentsSectionProps extends Params {
   options?: Options
 }
 
-const defaultOptions: Options = {
+const defaultOptions: DefaultOptions = {
   placeholder: 'Add a comment...',
   theme: 'default',
   editable: true,
@@ -31,12 +33,19 @@ const CommentsSection = ({
   listeners,
   options = defaultOptions
 }: CommentsSectionProps) => {
-  const { comments, userLikes, handleSubmit, handleUpdate, handleDelete } =
-    useEasyComments({
-      currentUser,
-      initialComments,
-      listeners
-    })
+  const {
+    comments,
+    userLikes,
+    handleSubmit,
+    handleUpdate,
+    handleDelete,
+    toggleSort
+  } = useEasyComments({
+    currentUser,
+    initialComments,
+    listeners,
+    filter: options?.filter?.[1] ?? defaultOptions.filter[1]
+  })
 
   return (
     <MainLayout>
@@ -53,7 +62,12 @@ const CommentsSection = ({
         />
       </section>
       <section className="commentsInfo">
-        <TotalComments theme={options.theme} comments={comments} />
+        {(options?.totalComments ?? defaultOptions.totalComments) && (
+          <TotalComments theme={options.theme} comments={comments} />
+        )}
+        {(options?.filter?.[0] ?? defaultOptions.filter[0]) && (
+          <SortComments theme={options.theme} toggleSort={toggleSort} />
+        )}
       </section>
       <CommentsLayout theme={options.theme}>
         {comments.map(comment => (
