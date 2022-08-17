@@ -2,7 +2,7 @@ const comments = [
   {
     commentId: '1',
     userId: '001',
-    username: 'Juan Perez',
+    username: 'Ai Soda',
     comment: 'Hello World!',
     creationDate: '03-05-2020',
     likes: 4,
@@ -11,7 +11,7 @@ const comments = [
   {
     commentId: '2',
     userId: '001',
-    username: 'Juan Perez',
+    username: 'Ai Sodaz',
     comment:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deserunt aut excepturi itaque magni commodi fugiat accusamus iusto nesciunt minima! Error harum corporis recusandae non, in eveniet maiores repellendus repellat!',
     creationDate: '03-06-2022',
@@ -21,7 +21,7 @@ const comments = [
   {
     commentId: '3',
     userId: '002',
-    username: 'Alejandro LG',
+    username: 'Aide Piña',
     comment:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deserunt aut excepturi itaque magni commodi fugiat accusamus iusto nesciunt minima! Error harum corporis recusandae non, in eveniet maiores repellendus repellat!',
     creationDate: '03-06-2022',
@@ -31,7 +31,7 @@ const comments = [
   {
     commentId: '4',
     userId: '003',
-    username: 'Diego Algo',
+    username: 'Eldo Mingo',
     comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     creationDate: '03-04-2019',
     likes: 1,
@@ -40,7 +40,7 @@ const comments = [
   {
     commentId: '5',
     userId: '004',
-    username: 'Manolo',
+    username: 'Laper Dida',
     comment:
       'Error deserunt aut excepturi itaque magni commodi fugiat accusamus iusto nesciunt minima! Error harum corporis recusandae non, in eveniet maiores repellendus repellat!.',
     creationDate: '06-07-2015',
