@@ -25,7 +25,7 @@ It's a simple library with that you can create a React Comment Sections Componen
 npm i @slydragonn/react-easy-comments
 ```
 
-### Usage
+### Getting started
 
 ```js
 import { CommentsSection } from '@slydragonn/react-easy-comments'
@@ -133,4 +133,85 @@ currentUser {
       onUpdate: async (comment) => await dosomething(comment),
       onDelete: async (comment) => await dosomething(comment)
     }
+  ```
+
+* __options__: It's an object with which you can personalize the comment section. All properties are optional and the next values are the default.
+
+```js
+{
+  placeholder: 'Add a comment...',
+  theme: 'default',
+  editable: true,
+  erasable: true,
+  likes: 'default',
+  maxLength: 500,
+  creationDate: true,
+  profileImage: true,
+  totalComments: true,
+  filter: [true, 'date']
+}
+```
+
+* placeholder: It's a string that represents the placeholder of the form for adding a comment.
+
+  ```ts
+    placeholder?: string
+  ```
+
+* theme: It's the theme of the comments section. Values ​​are 'default' or 'dark'.
+
+  ```ts
+    theme?: 'default' | 'dark'
+  ```
+
+* editable: Whether the comment can be editable or not.
+
+  ```ts
+    editable?: boolean
+  ```
+
+* erasable: Whether the comment can be deleted or not.
+
+  ```ts
+    erasable?: boolean
+  ```
+
+* likes: It's a string that you set whether you want to display likes, dislikes, or nothing. This property only accepts 'default', 'only like', or 'dislike'
+
+  ```ts
+    likes?: 'deafult' | 'only-likes' | 'no-likes'
+  ```
+
+  * _deafault:_ Show likes and dislikes
+  * _only-likes:_ Show only the likes
+  * _no-likes:_ No show or omit the likes and dislikes of the comment.
+
+* maxLength: It's the max length of characters that you can write in a comment.
+
+  ```ts
+    maxLength?: number
+  ```
+
+* creationDate: Show or not the creation date of a comment.
+
+  ```ts
+    creationDate?: boolean
+  ```
+
+* profileImage: Show or not the profile image of the user that created the comment.
+
+  ```ts
+    profileImage?: boolean
+  ```
+
+* totalComments: Show or not the counter of the comments.
+
+  ```ts
+    totalComments?: boolean
+  ```
+
+* filter: It's an array of two values, first is a boolean that represents if shows or not the filter, and the second is the initial state which is a string that represents how you want to sort the comments. By 'date' or 'likes'
+
+  ```ts
+    filter?: [boolean, 'date' | 'likes']
   ```
