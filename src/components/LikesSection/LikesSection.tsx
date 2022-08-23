@@ -21,14 +21,16 @@ const LikesSection = ({
   currentUser,
   likes,
   dislikes,
-  updateCommentLikes
+  updateCommentLikes,
+  options
 }: LikeProps) => {
   const { state, handleLikes } = useLikes({
     commentId,
     likes,
     dislikes,
     currentUser,
-    updateCommentLikes
+    updateCommentLikes,
+    options
   })
 
   return (
@@ -55,24 +57,28 @@ const LikesSection = ({
           {subNumber(state.likesCount)}
         </span>
       </div>
-      <div className="likesSection__container">
-        <button onClick={() => handleLikes('dislike')} className="button">
-          <DislikeIcon
-            className={addClass({
-              button__disable: theme === 'default' && !state.disliked,
-              'button__disable--dark': theme === 'dark' && !state.disliked,
-              'button__dislike--enable': state.disliked
+      {
+        options !== 'only-likes'
+        &&
+          <div className="likesSection__container">
+          <button onClick={() => handleLikes('dislike')} className="button">
+            <DislikeIcon
+              className={addClass({
+                button__disable: theme === 'default' && !state.disliked,
+                'button__disable--dark': theme === 'dark' && !state.disliked,
+                'button__dislike--enable': state.disliked
+              })}
+            />
+          </button>
+          <span
+            className={addClass('likesSection__counter', {
+              'likesSection__counter--dark': theme == 'dark'
             })}
-          />
-        </button>
-        <span
-          className={addClass('likesSection__counter', {
-            'likesSection__counter--dark': theme == 'dark'
-          })}
-        >
-          {subNumber(state.dislikesCount)}
-        </span>
-      </div>
+          >
+            {subNumber(state.dislikesCount)}
+          </span>
+        </div>
+      }
     </section>
   )
 }

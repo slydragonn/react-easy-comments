@@ -16,7 +16,8 @@ export const Primary = Template.bind({})
 Primary.args = {
   children: paragraph,
   edit: false,
-  onEdited: commentValue => console.log(commentValue)
+  onEdited: () => console.log('edited'),
+  onChange: commentValue => console.log(commentValue)
 }
 
 export const Secundary = Template.bind({})
@@ -24,7 +25,8 @@ Secundary.args = {
   children: paragraph,
   theme: 'dark',
   edit: false,
-  onEdited: commentValue => console.log(commentValue)
+  onEdited: () => console.log('edited'),
+  onChange: commentValue => console.log(commentValue)
 }
 
 export const Tertiary = Template.bind({})
@@ -32,5 +34,6 @@ Tertiary.args = {
   children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
   theme: 'default',
   edit: true,
-  onEdited: commentValue => console.log(commentValue)
+  onEdited: () => console.log('edited'),
+  onChange: commentValue => console.log(commentValue)
 }

@@ -21,7 +21,8 @@ Primary.args = {
   },
   likes: 2,
   dislikes: 0,
-  updateCommentLikes: commentLikes => console.log(commentLikes)
+  updateCommentLikes: commentLikes => console.log(commentLikes),
+  options: 'default'
 }
 
 export const Secundary = Template.bind({})
@@ -35,5 +36,21 @@ Secundary.args = {
   },
   likes: 2,
   dislikes: 0,
-  updateCommentLikes: commentLikes => console.log(commentLikes)
+  updateCommentLikes: commentLikes => console.log(commentLikes),
+  options: 'default'
+}
+
+export const Tertiary = Template.bind({})
+Tertiary.args = {
+  theme: 'dark',
+  commentId: '123',
+  currentUser: {
+    id: '001',
+    likes: ['123', '222'],
+    dislikes: []
+  },
+  likes: 2,
+  dislikes: 0,
+  updateCommentLikes: commentLikes => console.log(commentLikes),
+  options: 'only-likes'
 }

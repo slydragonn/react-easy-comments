@@ -5,12 +5,17 @@ import { getTimeAgo } from '../../utils'
 import Avatar from './Avatar'
 import './User.scss'
 
+interface UserOptions {
+  creationDate: boolean
+  profileImage: boolean
+}
 export interface UserProps {
   name: string
   image?: string
   profileLink?: string
   creationDate?: string
   theme?: Theme
+  options: UserOptions
 }
 
 const User = ({
@@ -18,18 +23,21 @@ const User = ({
   image,
   profileLink,
   creationDate,
-  theme = 'default'
+  theme = 'default',
+  options
 }: UserProps) => {
   return (
     <section className="user">
-      <Avatar name={name} image={image} profileLink={profileLink} />
+      <Avatar name={name} image={image} profileLink={profileLink} options={{
+        profileImage: options.profileImage
+      }}/>
       <div
         className={addClass('user__info', {
           'user__info--dark': theme === 'dark'
         })}
       >
         <p className="user__name">{name}</p>
-        {creationDate && (
+        {(creationDate && options.creationDate) && (
           <span className="user__date">{getTimeAgo(creationDate)}</span>
         )}
       </div>

@@ -14,7 +14,11 @@ Primary.args = {
   theme: 'default',
   commentId: '123',
   onEdit: commentId => console.log(commentId),
-  onDelete: commentId => console.log(commentId)
+  onDelete: commentId => console.log(commentId),
+  options: {
+    editable: true,
+    erasable: true
+  }
 }
 
 export const Secundary = Template.bind({})
@@ -22,5 +26,9 @@ Secundary.args = {
   theme: 'dark',
   commentId: '123',
   onEdit: commentId => console.log(commentId),
-  onDelete: commentId => console.log(commentId)
+  onDelete: commentId => console.log(commentId),
+  options: {
+    editable: true,
+    erasable: false
+  }
 }

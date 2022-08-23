@@ -33,12 +33,20 @@ const Template: ComponentStory<typeof CommentForm> = args => (
 export const Primary = Template.bind({})
 Primary.args = {
   initialValue: '',
-  onSend: commet => console.log(commet)
+  onSend: commet => console.log(commet),
+  options: {
+    maxLength: 500,
+    placeholder: 'Add a comment...'
+  }
 }
 
 export const Secundary = Template.bind({})
 Secundary.args = {
   theme: 'dark',
   initialValue: '',
-  onSend: commet => console.log(commet)
+  onSend: commet => console.log(commet),
+  options: {
+    maxLength: 50,
+    placeholder: 'Agregar un comentario...'
+  }
 }

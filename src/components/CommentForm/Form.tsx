@@ -4,16 +4,22 @@ import React, { useState } from 'react'
 import { IoMdSend } from 'react-icons/io'
 import './Form.scss'
 
+interface FormOptions {
+  placeholder: string
+  maxLength: number
+}
 export interface FormProps {
   theme?: 'default' | 'dark'
   initialValue?: string
   onSend: (comment: string) => void
+  options: FormOptions
 }
 
 const CommentForm = ({
   theme = 'default',
   initialValue,
-  onSend
+  onSend,
+  options
 }: FormProps) => {
   const [formValue, setFormValue] = useState(initialValue ?? '')
 
@@ -28,7 +34,8 @@ const CommentForm = ({
       <input
         value={formValue}
         onChange={evt => setFormValue(() => evt.target.value)}
-        placeholder="Add a comment..."
+        placeholder={options.placeholder}
+        maxLength={options.maxLength}
         type="text"
         name="comment-form"
         className={addClases('form__input', {

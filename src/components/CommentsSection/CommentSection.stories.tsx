@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React from 'react'
-import { comments, currentUser } from '../../helpers'
+import { comments, currentUser, noLikesComments } from '../../helpers'
 import CommentsSection from './CommentsSection'
 
 export default {
@@ -90,15 +90,13 @@ Tertiary.args = {
     dislikes: currentUser.dislikes
   },
   initialComments: [
-    comments,
+    noLikesComments,
     (el: any) => ({
       commentId: el.commentId,
       userId: el.userId,
       username: el.username,
       comment: el.comment,
-      creationDate: el.creationDate,
-      likes: el.likes,
-      dislikes: el.dislikes
+      creationDate: el.creationDate
     })
   ],
   listeners: {
@@ -112,7 +110,12 @@ Tertiary.args = {
     }
   },
   options: {
-    filter: [true, 'likes'],
-    totalComments: false
+    filter: [true, 'date'],
+    totalComments: false,
+    creationDate: false,
+    maxLength: 50,
+    placeholder: 'Agregar un comentario...',
+    profileImage: false,
+    likes: 'no-likes'
   }
 }

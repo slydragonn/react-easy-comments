@@ -75,7 +75,8 @@ const useLikes = ({
   likes,
   dislikes,
   currentUser,
-  updateCommentLikes
+  updateCommentLikes,
+  options
 }: LikeParams) => {
   const initialState: LikesState = {
     liked: false,
@@ -110,18 +111,21 @@ const useLikes = ({
             ? [...currentUser.likes, commentId]
             : currentUser.likes.filter(id => id !== commentId),
         dislikes:
-          currentUser.dislikes.includes(commentId) && state.disliked
+          options === 'default'
+          ? (
+            currentUser.dislikes.includes(commentId) && state.disliked
             ? currentUser.dislikes
             : state.disliked
             ? [...currentUser.dislikes, commentId]
             : currentUser.dislikes.filter(id => id !== commentId)
+          ) : []
       }
     }
 
     updateCommentLikes(commentInfo)
   }, [state.likesCount, state.dislikesCount])
 
-  const handleLikes = (context: 'like' | 'dislike') => {
+  const handleLikesAndDislikes = (context: 'like' | 'dislike') => {
     if (context === 'like') {
       if (state.disliked) {
         dispatch({ type: ActionKind.Dislike })
@@ -147,6 +151,23 @@ const useLikes = ({
       dispatch({ type: ActionKind.Disliked })
       return dispatch({ type: ActionKind.DislikesIncrement })
     }
+  }
+
+  const handleLikes = (context: 'like' | 'dislike') => {
+    if(options === 'only-likes') {
+      if (state.liked) {
+        dispatch({ type: ActionKind.Like })
+        return dispatch({ type: ActionKind.LikesDecrement })
+      }
+      dispatch({ type: ActionKind.Liked })
+      return dispatch({ type: ActionKind.LikesIncrement })
+    }
+
+    if(options === 'default') {
+      return handleLikesAndDislikes(context)
+    }
+
+    throw new Error('The options prop is wrong: only accept default, only-likes or no-likes')
   }
 
   return {

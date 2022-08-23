@@ -7,12 +7,17 @@ import { useMenu } from '../../hooks'
 import { Theme } from '../../types'
 import './Menu.scss'
 
+interface MenuOptions {
+  editable: boolean
+  erasable: boolean
+}
 export interface MenuProps {
   theme: Theme
   commentId: string
   edit: boolean
   onEdit: (context: 'cancel' | 'edit') => void
   onDelete: (commentId: string) => void
+  options: MenuOptions
 }
 
 const Menu = ({
@@ -20,7 +25,8 @@ const Menu = ({
   commentId,
   edit,
   onEdit,
-  onDelete
+  onDelete,
+  options
 }: MenuProps) => {
   const [show, setShow] = useState(false)
 
@@ -50,23 +56,31 @@ const Menu = ({
           'menu__hidden--show': show
         })}
       >
-        <li
-          className={addClass('menu__item', {
-            'menu__item--hidden': edit
-          })}
-          onClick={() => onEdit('edit')}
-        >
-          <EditIcon className="menu__itemIcon" />
-          Edit
-        </li>
-        <li
-          className={addClass('menu__item', {
-            'menu__item--hidden': edit
-          })}
-          onClick={() => onDelete(commentId)}
-        >
-          <DeleteIcon className="menu__itemIcon" /> Delete
-        </li>
+        {
+          options.editable
+          &&
+            <li
+              className={addClass('menu__item', {
+                'menu__item--hidden': edit
+              })}
+              onClick={() => onEdit('edit')}
+            >
+              <EditIcon className="menu__itemIcon" />
+              Edit
+            </li>
+        }
+        {
+          options.erasable
+          &&
+            <li
+              className={addClass('menu__item', {
+                'menu__item--hidden': edit
+              })}
+              onClick={() => onDelete(commentId)}
+            >
+              <DeleteIcon className="menu__itemIcon" /> Delete
+            </li>
+        }
         <li
           className={addClass('menu__item', 'menu__item--cancel', {
             'menu__item--hidden': !edit

@@ -35,7 +35,14 @@ Primary.args = {
   theme: 'default',
   user,
   onUpdate: comment => console.log(comment),
-  onDelete: commentId => console.log(commentId)
+  onDelete: commentId => console.log(commentId),
+  options: {
+    creationDate: true,
+    editable: true,
+    erasable: true,
+    likes: 'default',
+    profileImage: true
+  }
 }
 
 export const Secundary = Template.bind({})
@@ -44,7 +51,14 @@ Secundary.args = {
   theme: 'dark',
   user,
   onUpdate: comment => console.log(comment),
-  onDelete: commentId => console.log(commentId)
+  onDelete: commentId => console.log(commentId),
+  options: {
+    creationDate: true,
+    editable: false,
+    erasable: false,
+    likes: 'default',
+    profileImage: true
+  }
 }
 
 export const Tertiary = Template.bind({})
@@ -55,5 +69,30 @@ Tertiary.args = {
   },
   user,
   onUpdate: comment => console.log(comment),
-  onDelete: commentId => console.log(commentId)
+  onDelete: commentId => console.log(commentId),
+  options: {
+    creationDate: false,
+    editable: true,
+    erasable: false,
+    likes: 'only-likes',
+    profileImage: false
+  }
+}
+
+export const Quaternary = Template.bind({})
+Quaternary.args = {
+  comment: {
+    ...comment,
+    comment: largeText
+  },
+  user,
+  onUpdate: comment => console.log(comment),
+  onDelete: commentId => console.log(commentId),
+  options: {
+    creationDate: false,
+    editable: false,
+    erasable: true,
+    likes: 'no-likes',
+    profileImage: false
+  }
 }

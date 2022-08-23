@@ -1,6 +1,6 @@
 export { OneComment, Text } from './Comment'
 export { default as CommentForm } from './CommentForm'
-export { default as CommentsSection } from './CommentsSection'
+export { default as CommentsSection, SortComments, TotalComments } from './CommentsSection'
 export { CommentsLayout, MainLayout } from './Layouts'
 export { default as LikesSection } from './LikesSection'
 export { default as Menu } from './Menu'

@@ -1,7 +1,6 @@
 import React from 'react'
-import useEasyComments, { Params } from '../../hooks'
-import { Options } from '../../types'
-import { DefaultOptions } from '../../types/comments'
+import useEasyComments from '../../hooks'
+import { CurrentUser, DefaultOptions, InitialComments, Listeners, Options } from '../../types'
 import { OneComment } from '../Comment'
 import CommentForm from '../CommentForm'
 import { CommentsLayout, MainLayout } from '../Layouts'
@@ -10,7 +9,10 @@ import './main.scss'
 import SortComments from './Sort'
 import TotalComments from './Total'
 
-export interface CommentsSectionProps extends Params {
+export interface CommentsSectionProps {
+  currentUser: CurrentUser
+  initialComments: InitialComments
+  listeners: Listeners
   options?: Options
 }
 
@@ -18,20 +20,20 @@ const defaultOptions: DefaultOptions = {
   placeholder: 'Add a comment...',
   theme: 'default',
   editable: true,
-  erasable: false,
-  likes: [true, true],
+  erasable: true,
+  likes: 'default',
   maxLength: 500,
+  creationDate: true,
   profileImage: true,
   totalComments: true,
-  filter: [true, 'date'],
-  emojis: false
+  filter: [true, 'date']
 }
 
 const CommentsSection = ({
   initialComments,
   currentUser,
   listeners,
-  options = defaultOptions
+  options
 }: CommentsSectionProps) => {
   const {
     comments,
@@ -54,30 +56,44 @@ const CommentsSection = ({
           name={currentUser.name}
           image={currentUser.avartarUrl}
           profileLink={currentUser.linkProfile}
+          options={{
+            profileImage: options?.profileImage ?? defaultOptions.profileImage
+          }}
         />
         <CommentForm
-          theme={options.theme}
+          theme={options?.theme}
           initialValue=""
           onSend={handleSubmit}
+          options={{
+            placeholder: options?.placeholder ?? defaultOptions.placeholder,
+            maxLength: options?.maxLength ?? defaultOptions.maxLength
+          }}
         />
       </section>
       <section className="commentsInfo">
         {(options?.totalComments ?? defaultOptions.totalComments) && (
-          <TotalComments theme={options.theme} comments={comments} />
+          <TotalComments theme={options?.theme} comments={comments} />
         )}
-        {(options?.filter?.[0] ?? defaultOptions.filter[0]) && (
-          <SortComments theme={options.theme} toggleSort={toggleSort} />
+        {((options?.filter?.[0] ?? defaultOptions.filter[0]) && ((options?.likes ?? defaultOptions.likes) !== 'no-likes')) && (
+          <SortComments theme={options?.theme} toggleSort={toggleSort} />
         )}
       </section>
-      <CommentsLayout theme={options.theme}>
+      <CommentsLayout theme={options?.theme}>
         {comments.map(comment => (
           <OneComment
             key={comment.commentId}
-            theme={options.theme}
+            theme={options?.theme}
             comment={comment}
             user={userLikes}
             onUpdate={handleUpdate}
             onDelete={handleDelete}
+            options={{
+              creationDate: options?.creationDate ?? defaultOptions.creationDate,
+              profileImage: options?.profileImage ?? defaultOptions.creationDate,
+              editable: options?.editable ?? defaultOptions.editable,
+              erasable: options?.erasable ?? defaultOptions.erasable,
+              likes: options?.likes ?? defaultOptions.likes
+            }}
           />
         ))}
       </CommentsLayout>

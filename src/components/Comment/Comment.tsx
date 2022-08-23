@@ -7,12 +7,20 @@ import User from '../User'
 import './Comment.scss'
 import Text from './Text'
 
+interface CommentOptions {
+    profileImage: boolean
+    editable: boolean
+    erasable: boolean
+    likes: 'default' | 'only-likes' | 'no-likes'
+    creationDate: boolean
+}
 export interface CommentProps {
   theme?: Theme
   user: UserLikes
   comment: EasyComment
   onUpdate: (comment: EasyComment, currentUser: UserLikes) => void
   onDelete: (commentId: string) => void
+  options: CommentOptions
 }
 
 const Comment = ({
@@ -20,7 +28,8 @@ const Comment = ({
   user,
   comment,
   onUpdate,
-  onDelete
+  onDelete,
+  options
 }: CommentProps) => {
   const [isCurrentUser, setIsCurrentUser] = useState(false)
   const [editComment, setEditComment] = useState(false)
@@ -84,14 +93,22 @@ const Comment = ({
           profileLink={comment.profileLink}
           image={comment.avatarUrl}
           creationDate={comment.creationDate}
+          options={{
+            creationDate: options.creationDate,
+            profileImage: options.profileImage
+          }}
         />
-        {isCurrentUser && (
+        {(isCurrentUser && (options.editable || options.erasable)) && (
           <Menu
             theme={theme}
             commentId={comment.commentId}
             edit={editComment}
             onEdit={handleToggleEdit}
             onDelete={handleDelete}
+            options={{
+              editable: options.editable,
+              erasable: options.erasable
+            }}
           />
         )}
       </div>
@@ -104,15 +121,20 @@ const Comment = ({
         >
           {commentValue}
         </Text>
-        <LikesSection
-          theme={theme}
-          hide={editComment}
-          commentId={comment.commentId}
-          currentUser={user}
-          likes={comment.likes ?? 0}
-          dislikes={comment.dislikes ?? 0}
-          updateCommentLikes={handleLikes}
-        />
+        {
+          options.likes !== 'no-likes' 
+          && 
+            <LikesSection
+              theme={theme}
+              hide={editComment}
+              commentId={comment.commentId}
+              currentUser={user}
+              likes={comment.likes ?? 0}
+              dislikes={comment.dislikes ?? 0}
+              updateCommentLikes={handleLikes}
+              options={options.likes}
+            />
+        }
       </div>
     </section>
   )

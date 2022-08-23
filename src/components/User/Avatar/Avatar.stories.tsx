@@ -15,10 +15,16 @@ Primary.args = {
   image:
     'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
   profileLink:
-    'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg'
+    'https://i.pinimg.com/236x/22/8a/c2/228ac2bc5c7e3992e98ed4035e343b5f.jpg',
+  options: {
+    profileImage: true
+  }
 }
 
 export const Secundary = Template.bind({})
 Secundary.args = {
-  name: 'Maria Puerta'
+  name: 'Maria Puerta',
+  options: {
+    profileImage: false
+  }
 }
