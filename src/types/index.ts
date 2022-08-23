@@ -1,6 +1,5 @@
 export {
-  CommentLikes,
-  EasyComment,
+  CommentLikes, DefaultOptions, EasyComment,
   Filter,
   InitialComments,
   Options

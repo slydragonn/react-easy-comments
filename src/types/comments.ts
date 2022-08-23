@@ -28,22 +28,22 @@ export interface Options {
   theme?: Theme
   editable?: boolean
   erasable?: boolean
-  likes?: boolean[]
+  likes?: 'default' | 'only-likes' | 'no-likes'
   maxLength?: number
+  creationDate?: boolean
   profileImage?: boolean
   totalComments?: boolean
   filter?: [boolean, Filter]
-  emojis?: boolean
 }
 export interface DefaultOptions {
   placeholder: string
   theme: Theme
   editable: boolean
   erasable: boolean
-  likes: boolean[]
+  likes: 'default' | 'only-likes' | 'no-likes'
   maxLength: number
+  creationDate: boolean
   profileImage: boolean
   totalComments: boolean
   filter: [boolean, Filter]
-  emojis: boolean
 }

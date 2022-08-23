@@ -11,4 +11,5 @@ export interface LikeParams {
   dislikes: number
   currentUser: CurrentUser
   updateCommentLikes: (commentLikes: CommentLikes) => void
+  options: 'default' | 'only-likes'
 }
