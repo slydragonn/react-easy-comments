@@ -14,7 +14,6 @@ It's a simple library with that you can create a React Comment Sections Componen
 
 ## To-do
 
-* [ ] Implement the options props
 * [ ] Show comments without being logged in
 * [ ] More colors for Avatars
 * [ ] Testing

@@ -2,9 +2,6 @@
   "name": "@slydragonn/react-easy-comments",
   "version": "1.2.0",
   "description": "A react component library for create comments section",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@slydragonn"
-  },
   "scripts": {
     "rollup": "rollup -c",
     "test": "jest",
@@ -77,5 +74,16 @@
     "dompurify": "^2.3.10",
     "react-icons": "^4.4.0",
     "uuid": "^8.3.2"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slydragonn/react-easy-comments.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slydragonn/react-easy-comments/issues"
+  },
+  "homepage": "https://github.com/slydragonn/react-easy-comments#readme"
 }
