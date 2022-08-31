@@ -29,9 +29,26 @@ const defaultOptions: DefaultOptions = {
   filter: [true, 'date']
 }
 
+ /**
+   * Create a complete comments Section
+   * 
+   * @param {CurrentUser} props.currentUser Accepts an object with the current user info.
+   * @param {Array} props.initialComments It's an Array that accepts two elements. The first is the array
+   * with the comments, and the second element is the function to map.
+   * @param {Listeners} props.listeners It's an object with three properties and represents the different
+   * actions of the comments section. (onSubmit - onUpdate - onDelete). The properties are functions that pass as param
+   * an object with the comment info or in the onDelete case, it passes a comment id.
+   * @param {Options} props.options It's an object with which you can personalize the comment section, all properties are optional.
+   * 
+   * @version   1.2.1
+   * 
+   * @author    Alejandro Londoño <alogo18m@gmail.com>
+   * 
+   * @see   https://github.com/slydragonn/react-easy-comments
+   */
 const CommentsSection = ({
-  initialComments,
   currentUser,
+  initialComments,
   listeners,
   options
 }: CommentsSectionProps) => {
