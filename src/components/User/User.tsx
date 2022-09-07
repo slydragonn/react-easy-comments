@@ -38,7 +38,7 @@ const User = ({
       >
         <p className="user__name">{name}</p>
         {(creationDate && options.creationDate) && (
-          <span className="user__date">{getTimeAgo(creationDate)}</span>
+          <span data-testid="creation-date" className="user__date">{getTimeAgo(creationDate)}</span>
         )}
       </div>
     </section>
