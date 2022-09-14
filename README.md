@@ -1,4 +1,4 @@
-<h1 align='center'>Easy Comments - <i>Alpha</i></h1>
+<h1 align='center'>Easy Comments</h1>
 
 <p align='center'><img  alt='easy comments logo' src='./docs/Vector.png'/></p>
 
@@ -12,11 +12,10 @@ It's a simple library with that you can create a React Comment Sections Componen
 <div style='display: flex; justify-content: space-around'><p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_2.PNG'/></p>
 <p><img style='border-radius: 5px' width='350px' alt='easy comments logo' src='./docs/capture_4.PNG'/></p></div>
 
-## To-do
+## Components
 
-* [ ] Show comments without being logged in
-* [ ] More colors for Avatars
-* [ ] Testing
+- [__CommentsSection__](#comment-section)
+- [__CommentsList__](#comment-list)
 
 ### Install
 
@@ -30,7 +29,7 @@ npm i @slydragonn/react-easy-comments
 import { CommentsSection } from '@slydragonn/react-easy-comments'
 ```
 
-* __CommentsSection__ accepts four props, but the last is optional.
+- <h3 id='comment-section'>CommentsSection</h3> accepts four props, but the last is optional.
 
 #### Example
 
@@ -81,7 +80,7 @@ export default App
 
 ```
 
-* __currentUser__: Accept an object with these properties. The dislikes and likes properties are arrays with the comment id that the current user like or disliked.
+- __currentUser__: Accept an object with these properties. The dislikes and likes properties are arrays with the comment id that the current user like or disliked.
 
 ```ts
 currentUser {
@@ -94,7 +93,7 @@ currentUser {
 }
 ```
 
-* __initialComments__: It's an Array that accepts two elements. The first is the array that contains the comments for the section and the second element is a function that maps the list of comments of the first element and passes as param the array elements.
+- __initialComments__: It's an Array that accepts two elements. The first is the array that contains the comments for the section and the second element is a function that maps the list of comments of the first element and passes as param the array elements.
 
   ```ts
   initialComments: []
@@ -104,7 +103,7 @@ currentUser {
 
   ```
 
-  * __EasyComment__: Is the type of object that should be returned by the function passed as the second element of the initialComments array.
+  - __EasyComment__: Is the type of object that should be returned by the function passed as the second element of the initialComments array.
 
     ```ts
     EasyComments {
@@ -120,7 +119,7 @@ currentUser {
       }
     ```
 
-* __listeners__: It's an object with three properties and represents the different actions of the comments section. All functions are async, so you can pass instructions that are relational with APIs and Databases.
+- __listeners__: It's an object with three properties and represents the different actions of the comments section. All functions are async, so you can pass instructions that are relational with APIs and Databases.
 
   ```ts
     listeners = {
@@ -134,7 +133,7 @@ currentUser {
     }
   ```
 
-* __options__: It's an object with which you can personalize the comment section. All properties are optional and the next values are the default.
+- __options__: It's an object with which you can personalize the comment section. All properties are optional and the next values are the default.
 
 ```js
 {
@@ -151,66 +150,101 @@ currentUser {
 }
 ```
 
-* placeholder: It's a string that represents the placeholder of the form for adding a comment.
+- placeholder: It's a string that represents the placeholder of the form for adding a comment.
 
   ```ts
     placeholder?: string
   ```
 
-* theme: It's the theme of the comments section. Values ​​are 'default' or 'dark'.
+- theme: It's the theme of the comments section. Values ​​are 'default' or 'dark'.
 
   ```ts
     theme?: 'default' | 'dark'
   ```
 
-* editable: Whether the comment can be editable or not.
+- editable: Whether the comment can be editable or not.
 
   ```ts
     editable?: boolean
   ```
 
-* erasable: Whether the comment can be deleted or not.
+- erasable: Whether the comment can be deleted or not.
 
   ```ts
     erasable?: boolean
   ```
 
-* likes: It's a string that you set whether you want to display likes, dislikes, or nothing. This property only accepts 'default', 'only like', or 'dislike'
+- likes: It's a string that you set whether you want to display likes, dislikes, or nothing. This property only accepts 'default', 'only like', or 'dislike'
 
   ```ts
     likes?: 'deafult' | 'only-likes' | 'no-likes'
   ```
 
-  * _deafault:_ Show likes and dislikes
-  * _only-likes:_ Show only the likes
-  * _no-likes:_ No show or omit the likes and dislikes of the comment.
+  - _deafault:_ Show likes and dislikes
+  - _only-likes:_ Show only the likes
+  - _no-likes:_ No show or omit the likes and dislikes of the comment.
 
-* maxLength: It's the max length of characters that you can write in a comment.
+- maxLength: It's the max length of characters that you can write in a comment.
 
   ```ts
     maxLength?: number
   ```
 
-* creationDate: Show or not the creation date of a comment.
+- creationDate: Show or not the creation date of a comment.
 
   ```ts
     creationDate?: boolean
   ```
 
-* profileImage: Show or not the profile image of the user that created the comment.
+- profileImage: Show or not the profile image of the user that created the comment.
 
   ```ts
     profileImage?: boolean
   ```
 
-* totalComments: Show or not the counter of the comments.
+- totalComments: Show or not the counter of the comments.
 
   ```ts
     totalComments?: boolean
   ```
 
-* filter: It's an array of two values, first is a boolean that represents if shows or not the filter, and the second is the initial state which is a string that represents how you want to sort the comments. By 'date' or 'likes'
+- filter: It's an array of two values, first is a boolean that represents if shows or not the filter, and the second is the initial state which is a string that represents how you want to sort the comments. By 'date' or 'likes'
 
-  ```ts
+  ```tsx
     filter?: [boolean, 'date' | 'likes']
   ```
+
+- <h3 id='comment-list'>CommentsList component</h3>
+
+Shows Only the comments
+
+```tsx
+    import React from 'react'
+    import { CommentsList } from '@slydragonn/react-easy-comments'
+    import { User, Comments, doSomething } from 'example'
+
+    export default function MyApp() {
+      return (
+        <main>
+          <h1>Only Comments List</h1>
+          <CommentsList
+            initialComments={[
+              Comments,
+              (commentElement: any): EasyComment => ({
+                commentId: commentElement.id,
+                userId: commentElement.user.id,
+                username: commentElement.user.name,
+                comment: commentElement.text,
+                creationDate: commentElement.date,
+                likes: commentElement.info.likes,
+                dislikes: commentElement.info.dislikes,
+                avatarUrl: commentElement.user.image,
+                profileLink: commentElement.user.link
+              })
+            ]}
+            options={{}}
+          >
+        </main>
+      )
+    }
+```
