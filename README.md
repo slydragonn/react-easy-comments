@@ -220,8 +220,8 @@ Shows Only the comments
 
 ```tsx
     import React from 'react'
-    import { CommentsList } from '@slydragonn/react-easy-comments'
-    import { User, Comments, doSomething } from 'example'
+    import { CommentsList, EasyComment } from '@slydragonn/react-easy-comments'
+    import { Comments } from 'example'
 
     export default function MyApp() {
       return (
