@@ -16,7 +16,7 @@ export interface CommentsSectionProps {
   options?: Options
 }
 
-const defaultOptions: DefaultOptions = {
+export const defaultOptions: DefaultOptions = {
   placeholder: 'Add a comment...',
   theme: 'default',
   editable: true,

@@ -8,21 +8,12 @@ import { IoMdSend } from 'react-icons/io'
 import { Theme } from '../../../types'
 import './Text.scss'
 
-export interface TextProps {
-  children: string
+interface TextValueProps {
   theme: Theme
-  edit: boolean
-  onEdited: () => void
-  onChange: (comment: string) => void
+  children: string
 }
 
-const Text = ({
-  children,
-  theme = 'default',
-  edit,
-  onEdited,
-  onChange
-}: TextProps) => {
+export const TextValue = ({theme, children}: TextValueProps) => {
   const [showSeeMore, setShowSeeMore] = useState(false)
   const [showAll, setShowAll] = useState(false)
   const textContainer = useRef<HTMLElement>(null)
@@ -43,23 +34,6 @@ const Text = ({
 
   const handleClick = () => {
     return setShowAll(show => !show)
-  }
-
-  if (edit) {
-    return (
-      <section className="edit">
-        <textarea
-          className={addClass('input', { 'input--dark': theme === 'dark' })}
-          name="comment-edit"
-          placeholder="Add a comment..."
-          value={children}
-          onChange={evt => onChange(evt.target.value)}
-        />
-        <button className="button" onClick={onEdited}>
-          <IoMdSend className="button__icon" />
-        </button>
-      </section>
-    )
   }
 
   return (
@@ -104,6 +78,42 @@ const Text = ({
       )}
     </section>
   )
+}
+
+export interface TextProps {
+  children: string
+  theme: Theme
+  edit: boolean
+  onEdited: () => void
+  onChange: (comment: string) => void
+}
+
+const Text = ({
+  children,
+  theme = 'default',
+  edit,
+  onEdited,
+  onChange
+}: TextProps) => {
+
+  if (edit) {
+    return (
+      <section className="edit">
+        <textarea
+          className={addClass('input', { 'input--dark': theme === 'dark' })}
+          name="comment-edit"
+          placeholder="Add a comment..."
+          value={children}
+          onChange={evt => onChange(evt.target.value)}
+        />
+        <button className="button" onClick={onEdited}>
+          <IoMdSend className="button__icon" />
+        </button>
+      </section>
+    )
+  }
+
+  return <TextValue theme={theme}>{children}</TextValue>
 }
 
 export default Text

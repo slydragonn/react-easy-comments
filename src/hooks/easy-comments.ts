@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import {
   CurrentUser,
@@ -155,6 +155,30 @@ const useEasyComments = ({
     handleDelete,
     toggleSort
   }
+}
+
+export interface CommentsListParams {
+  initialComments: InitialComments
+  filter: Filter
+}
+
+export const useCommentsList = ({initialComments, filter}: CommentsListParams) => {
+  const [comments, setComments] = useState<EasyComment[]>([])
+
+  useEffect(() => {
+    setComments(() => initialComments[0].map(initialComments[1]))
+  }, [])
+
+  const [toggleSort, sortedComments] = useSort({
+    sortBy: filter,
+    comments
+  })
+
+  return {
+    comments: sortedComments,
+    toggleSort
+  }
+
 }
 
 export default useEasyComments

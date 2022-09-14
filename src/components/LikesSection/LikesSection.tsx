@@ -83,4 +83,44 @@ const LikesSection = ({
   )
 }
 
+interface OnlyLikesProps {
+  theme: Theme
+  likes: number
+  dislikes: number
+  options: 'default' | 'only-likes'
+}
+
+export const OnlyLikes = ({theme, likes, dislikes, options}: OnlyLikesProps) => {
+  return (
+    <section
+      className='likesSection'
+    >
+      <div className="likesSection__container">
+          <LikeIcon className='button__like--enable' />
+        <span
+          className={addClass('likesSection__counter', {
+            'likesSection__counter--dark': theme == 'dark'
+          })}
+        >
+          {subNumber(likes)}
+        </span>
+      </div>
+      {
+        options !== 'only-likes'
+        &&
+          <div className="likesSection__container">
+            <DislikeIcon className='button__dislike--enable'/>
+          <span
+            className={addClass('likesSection__counter', {
+              'likesSection__counter--dark': theme == 'dark'
+            })}
+          >
+            {subNumber(dislikes)}
+          </span>
+        </div>
+      }
+    </section>
+  )
+}
+
 export default LikesSection

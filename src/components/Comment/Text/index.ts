@@ -1,1 +1,2 @@
-export { default } from './Text'
+export { default, TextValue } from './Text';
+

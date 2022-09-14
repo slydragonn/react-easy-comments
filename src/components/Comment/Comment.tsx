@@ -1,11 +1,11 @@
 import DOMPurify from 'dompurify'
 import React, { useEffect, useState } from 'react'
 import { CommentLikes, EasyComment, Theme, UserLikes } from '../../types'
-import LikesSection from '../LikesSection'
+import LikesSection, { OnlyLikes } from '../LikesSection'
 import Menu from '../Menu'
 import User from '../User'
 import './Comment.scss'
-import Text from './Text'
+import Text, { TextValue } from './Text'
 
 interface CommentOptions {
     profileImage: boolean
@@ -134,6 +134,50 @@ const Comment = ({
               updateCommentLikes={handleLikes}
               options={options.likes}
             />
+        }
+      </div>
+    </section>
+  )
+}
+
+interface CommentsItemProps {
+  theme: Theme
+  comment: EasyComment
+  options: CommentOptions
+}
+
+export const CommentsItem = ({theme = 'dark', comment, options}: CommentsItemProps) => {
+  
+  return (
+    <section className="comment">
+      <div className="comment__user">
+        <User
+          name={comment.username}
+          theme={theme}
+          profileLink={comment.profileLink}
+          image={comment.avatarUrl}
+          creationDate={comment.creationDate}
+          options={{
+            creationDate: options.creationDate,
+            profileImage: options.profileImage
+          }}
+        />
+      </div>
+      <div className="comment__info">
+        <TextValue
+          theme={theme}
+        >
+          {comment.comment}
+        </TextValue>
+        {
+          options.likes !== 'no-likes' 
+          && 
+          <OnlyLikes 
+            theme={theme}
+            likes={comment.likes ?? 0}
+            dislikes={comment.dislikes ?? 0}
+            options={options.likes}
+          />
         }
       </div>
     </section>

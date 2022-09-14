@@ -1,1 +1,2 @@
-export { default } from './LikesSection'
+export { default, OnlyLikes } from './LikesSection';
+
