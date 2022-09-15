@@ -17,6 +17,10 @@ It's a simple library with that you can create a React Comment Sections Componen
 - [__CommentsSection__](#comment-section)
 - [__CommentsList__](#comment-list)
 
+### Examples
+- [Code](https://github.com/slydragonn/example-easy-comments)
+- [Demo](https://example-easy-comments.vercel.app/)
+
 ### Install
 
 ```bash
